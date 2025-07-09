@@ -1,0 +1,1 @@
+<img class="ez-resource-thumb__img" src="https://image.shutterstock.com/image-vector/headphones-microphone-speech-bubble-chat-260nw-2147035219.jpg" alt="Headphones with microphone with speech bubble chat icon, Customer consultation service online, white gray background. 3D isometric vector illustration"></img>

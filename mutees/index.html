@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutheeswaran - UI & UX Designer</title>
+    <style>
+        /* Main colors and setup */
+        :root {
+            --primary-bg: #1b1b20;
+            --card-bg: #272730;
+            --accent-red: #e94057;
+            --accent-orange: #f27121;
+            --accent-yellow: #ffcc33;
+            --accent-blue: #3498db;
+            --text-white: #ffffff;
+            --text-gray: #b0b0b8;
+            --card-radius: 20px;
+            --btn-radius: 30px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-white);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); }
+            to { transform: scale(1); }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes circle-fill {
+            from { stroke-dashoffset: 377; }
+            to { stroke-dashoffset: 100; }
+        }
+        
+        @keyframes circle-fill-alt {
+            from { stroke-dashoffset: 377; }
+            to { stroke-dashoffset: 150; }
+        }
+        
+        @keyframes floatingAnimation {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+        
+        /* Header styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .greeting {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .profile-icon:hover {
+            background-color: var(--accent-red);
+        }
+        
+        /* Main card with gradient */
+        .main-card {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-orange));
+            border-radius: var(--card-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.5s ease forwards;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .main-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .main-card-content {
+            width: 60%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .main-card h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .main-card p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: var(--btn-radius);
+            padding: 8px 15px;
+            margin-right: 10px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .tag:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .person-image {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            z-index: 1;
+            animation: slideInRight 0.8s ease forwards;
+        }
+        
+        .reviews {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .avatar-group {
+            display: flex;
+        }
+        
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-bg);
+            margin-left: -10px;
+            background-color: #5c5c6e;
+            transition: transform 0.3s ease;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.1);
+        }
+        
+        .avatar:first-child {
+            margin-left: 0;
+        }
+        
+        /* Section headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .see-more {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .see-more:hover {
+            color: var(--text-white);
+        }
+        
+        /* 3D card effects */
+        .parallax-effect {
+            transition: transform 0.2s ease-out;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        
+        .glow-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glow-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+        
+        .glow-effect:hover::before {
+            opacity: 1;
+        }
+        
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -100%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(25deg);
+            transition: all 0.7s ease;
+            z-index: 3;
+        }
+        
+        .shine-effect:hover::after {
+            left: 200%;
+        }
+        
+        .float-effect {
+            animation: floatingAnimation 5s ease-in-out infinite;
+        }
+        
+        /* Card grid layout */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 580px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Cool card styling */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            position: relative;
+            height: 180px;
+            flex-shrink: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeIn 0.5s ease forwards;
+            animation-delay: calc(0.1s * var(--i, 1));
+            opacity: 0;
+            animation-fill-mode: forwards;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform-origin: center;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25), 0 0 15px rgba(233, 64, 87, 0.3);
+            z-index: 10;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 0%, rgba(233, 64, 87, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+            z-index: 1;
+        }
+        
+        .card:hover .card-bg {
+            transform: scale(1.1);
+        }
+        
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover .card-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 100%);
+        }
+        
+        .card-content {
+            padding: 20px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            z-index: 3;
+            transform: translateY(5px);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover .card-content {
+            transform: translateY(0);
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent-red);
+            color: white;
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            z-index: 4;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover .card-badge {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+        
+        .card:hover h3::after {
+            width: 100%;
+        }
+        
+        .card p {
+            color: var(--text-gray);
+            font-size: 14px;
+            max-height: 0;
+            opacity: 0.7;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+        }
+        
+        .card:hover p {
+            max-height: 60px;
+            opacity: 1;
+        }
+        
+        /* Skills section */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .stat-card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            animation: fadeIn 0.5s ease forwards;
+            animation-delay: 0.3s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+        }
+        
+        .stat-title {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+        
+        .stat-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-arrow {
+            transform: translateX(5px);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .charts-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .donut-chart {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .donut-chart {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .donut-chart {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        .circle-animation {
+            stroke-dasharray: 377;
+            stroke-dashoffset: 377;
+            animation: circle-fill 1.5s ease forwards;
+            animation-delay: 0.5s;
+        }
+        
+        .circle-animation-alt {
+            stroke-dasharray: 377;
+            stroke-dashoffset: 377;
+            animation: circle-fill-alt 1.5s ease forwards;
+            animation-delay: 0.8s;
+        }
+        
+        .skills-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease forwards;
+            animation-delay: 0.8s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .skill-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Contact section */
+        .contact-card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s ease forwards;
+            animation-delay: 0.3s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-bg), #2a2a3a);
+            opacity: 0.8;
+            z-index: 1;
+        }
+        
+        .contact-content {
+            position: relative;
+            z-index: 2;
+            padding: 25px;
+        }
+        
+        .contact-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contact-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+        
+        .contact-card:hover .contact-title::after {
+            width: 100%;
+        }
+        
+        .contact-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .contact-items {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: var(--primary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .contact-item:hover .contact-icon {
+            transform: scale(1.1);
+            background-color: var(--accent-red);
+        }
+        
+        .contact-info {
+            flex-grow: 1;
+        }
+        
+        .contact-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .contact-value {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .main-card-content {
+                width: 100%;
+            }
+            
+            .person-image {
+                opacity: 0.3;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .main-card {
+                padding: 20px;
+            }
+            
+            .main-card h2 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+        .download-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #ff00009a; 
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #0056b3; 
+}
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="greeting">
+            <span>HI,This is </span>
+            <strong>MUTHEESWARAN</strong>
+            <div class="profile-icon">👤</div>
+        </div>
+    </header>
+    
+    <main>
+        <!-- Main profile card -->
+        <section class="main-card">
+            <div class="main-card-content">
+                <h2>UI & UX Designer</h2>
+                <p>Aspiring UI UX designer with a strong portfolio of work that demonstrates my skills in creating visually appealing and effective designs.</p>
+                <div>
+                    <a href="cvm.pdf" class="download-btn" download>Resume</a>
+                    <span class="tag">Mobile First</span>
+                </div>
+                <div class="reviews">
+                    <div class="avatar-group">
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                    </div>
+                    <span>⭐ Top Designer</span>
+                </div>
+            </div>
+            <div class="person-image">
+                <!-- Abstract person shape -->
+                <svg width="200" height="100%" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(255,255,255,0.3);stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M100,350 C180,300 150,200 150,150 C150,100 120,50 100,50 C80,50 50,100 50,150 C50,200 20,300 100,350 Z" fill="url(#grad)"/>
+                </svg>
+            </div>
+        </section>
+        
+        <!-- Education cards with 3D effects -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+               
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card parallax-effect glow-effect shine-effect" style="--i:1;">
+                    <div class="card-bg" style="background-image: url('/api/placeholder/350/200')"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <h3>Master of Computer Applications</h3>
+                        <p>Madurai Kamaraj University College (2023-2025)</p>
+                        <p>Specializing in UI/UX Design and Frontend Development</p>
+                    </div>
+                    <div class="card-badge">Current</div>
+                </div>
+                
+                <div class="card parallax-effect glow-effect shine-effect" style="--i:2;">
+                    <div class="card-bg" style="background-image: url('/api/placeholder/350/200')"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <h3>Bachelor of Computer Science</h3>
+                        <p>American College (2020-2023)</p>
+                        <p>76.7% with honors in Web Technologies</p>
+                    </div>
+                    <div class="card-badge">Completed</div>
+                </div>
+                
+                <div class="card parallax-effect glow-effect shine-effect" style="--i:3;">
+                    <div class="card-bg" style="background-image: url('/api/placeholder/350/200')"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <h3>Web Development Bootcamp</h3>
+                        <p>Online Course (2022)</p>
+                        <p>Advanced JavaScript, ReactJS and Node.js</p>
+                    </div>
+                    <div class="card-badge">Certificate</div>
+                </div>
+                
+                <div class="card parallax-effect glow-effect shine-effect" style="--i:4;">
+                    <div class="card-bg" style="background-image: url('/api/placeholder/350/200')"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <h3>UI/UX Design Course</h3>
+                        <p>Elysium Academy (2023)</p>
+                        <p>Figma, Adobe XD, and UI/UX Principles</p>
+                    </div>
+                    <div class="card-badge">Certificate</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills with animated circles -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">Skills</h2>
+                
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">UI Design Skills</span>
+                       
+                    </div>
+                    
+                    <div class="charts-container">
+                        <div class="donut-chart">
+                            <svg width="100%" height="100%" viewBox="0 0 150 150">
+                                <circle cx="75" cy="75" r="60" fill="none" stroke="#3a3a48" stroke-width="15" />
+                                <circle cx="75" cy="75" r="60" fill="none" stroke="#e94057" stroke-width="15" stroke-dasharray="377" stroke-dashoffset="100" transform="rotate(-90, 75, 75)" class="circle-animation" />
+                                <text x="75" y="75" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="20" font-weight="bold">85%</text>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-icons">
+                        <div class="skill-icon" style="background-color: #e94057;">HTML</div>
+                        <div class="skill-icon" style="background-color: #f27121;">CSS</div>
+                        <div class="skill-icon">JS</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">UX Research</span>
+                       
+                    </div>
+                    
+                    <div class="charts-container">
+                        <div class="donut-chart">
+                            <svg width="100%" height="100%" viewBox="0 0 150 150">
+                                <circle cx="75" cy="75" r="60" fill="none" stroke="#3a3a48" stroke-width="15" />
+                                <circle cx="75" cy="75" r="60" fill="none" stroke="#3498db" stroke-width="15" stroke-dasharray="377" stroke-dashoffset="150" transform="rotate(-90, 75, 75)" class="circle-animation-alt" />
+                                <text x="75" y="75" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="20" font-weight="bold">70%</text>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-icons">
+                        <div class="skill-icon" style="background-color: #3498db;">Figma</div>
+                        <div class="skill-icon" style="background-color: #9b59b6;">XD</div>
+                        <div class="skill-icon">Sketch</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certifications with 3D effects -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+               
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card parallax-effect glow-effect shine-effect" style="--i:1;">
+                    <div class="card-bg" style="background-image: url('/api/placeholder/350/200')"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <h3>UI & UX Designer</h3>
+                        <p>Elysium Academy (2025)</p>
+                        <p>Professional certification in design principles</p>
+                    </div>
+                    <div class="card-badge">Advanced</div>
+                </div>
+                
+                <div class="card parallax-effect glow-effect shine-effect" style="--i:2;">
+                    <div class="card-bg" style="background-image: url('/api/placeholder/350/200')"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <h3>Frontend Development</h3>
+                        <p>Online Course (2024)</p>
+                        <p>React, Vue.js and modern JavaScript frameworks</p>
+                    </div>
+                    <div class="card-badge">Intermediate</div>
+                </div>
+                
+                <div class="card parallax-effect glow-effect shine-effect" style="--i:3;">
+                    <div class="card-bg" style="background-image: url('/api/placeholder/350/200')"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <h3>Responsive Web Design</h3>
+                        <p>freeCodeCamp (2023)</p>
+                        <p>CSS Grid, Flexbox and mobile-first design</p>
+                    </div>
+                    <div class="card-badge">Completed</div>
+                </div>
+                
+                <div class="card parallax-effect glow-effect shine-effect" style="--i:4;">
+                    <div class="card-bg" style="background-image: url('/api/placeholder/350/200')"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <h3>UI Animation</h3>
+                        <p>Udemy (2023)</p>
+                        <p>Advanced CSS and JavaScript animations</p>
+                    </div>
+                    <div class="card-badge">Specialized</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact section with unified card -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">Contact</h2>
+            </div>
+            
+            <div class="contact-card parallax-effect glow-effect">
+                <div class="contact-bg"></div>
+                <div class="contact-content">
+                    <h3 class="contact-title">Get In Touch</h3>
+                    
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-info">
+                                <div class="contact-label">Phone</div>
+                                <div class="contact-value">9025423094</div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-info">
+                                <div class="contact-label">Email</div>
+                                <div class="contact-value">mkeswaran2003@gmail.com</div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">🗣️</div>
+                            <div class="contact-info">
+                                <div class="contact-label">Languages</div>
+                                <div class="contact-value">Tamil, English, Telugu</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        // Main script for cool effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make cards tilt in 3D when mouse moves over them
+            const parallaxCards = document.querySelectorAll('.parallax-effect');
+            
+            parallaxCards.forEach(card => {
+                // Move card to follow mouse
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    // Calculate rotation based on mouse position
+                    const moveX = (x - centerX) / centerX * 12;
+                    const moveY = (y - centerY) / centerY * 8;
+                    
+                    // Apply 3D effect
+                    this.style.transform = `perspective(1000px) rotateY(${moveX}deg) rotateX(${-moveY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    
+                    // Add depth by moving background
+                    const cardBg = this.querySelector('.card-bg');
+                    if (cardBg) {
+                        cardBg.style.transform = `translateX(${moveX * -1.5}px) translateY(${moveY * -1.5}px) scale(1.1)`;
+                    }
+                    
+                    // Move badge for extra effect
+                    const cardBadge = this.querySelector('.card-badge');
+                    if (cardBadge) {
+                        cardBadge.style.transform = `translateX(${moveX * 2}px) translateY(${moveY * 1.5}px)`;
+                    }
+                    
+                    // Dynamic shadow based on mouse position
+                    const shadowX = moveX * 0.5;
+                    const shadowY = moveY * 0.5;
+                    this.style.boxShadow = `
+                        ${-shadowX}px ${-shadowY}px 15px rgba(0,0,0,0.15),
+                        ${-shadowX * 0.5}px ${-shadowY * 0.5}px 30px rgba(233, 64, 87, 0.1)
+                    `;
+                });
+                
+                // Reset when mouse leaves
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                    
+                    const cardBg = this.querySelector('.card-bg');
+                    if (cardBg) {
+                        cardBg.style.transform = '';
+                    }
+                    
+                    const cardBadge = this.querySelector('.card-badge');
+                    if (cardBadge) {
+                        cardBadge.style.transform = '';
+                    }
+                    
+                    // Add smooth transition when mouse leaves
+                    this.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+                    setTimeout(() => {
+                        this.style.transition = '';
+                    }, 600);
+                });
+                
+                // Handle touch events for mobile
+                card.addEventListener('touchstart', function(e) {
+                    // Add a highlight effect on touch
+                    this.style.transform = 'scale(0.98)';
+                    this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+                });
+                
+                card.addEventListener('touchend', function() {
+                    // Return to normal after touch
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                    this.style.transition = 'all 0.4s ease';
+                    setTimeout(() => {
+                        this.style.transition = '';
+                    }, 400);
+                });
+            });
+
+            // Animate percentage counters in circles
+            const circleElements = document.querySelectorAll('.circle-animation, .circle-animation-alt');
+            circleElements.forEach(circle => {
+                const svgText = circle.parentElement.querySelector('text');
+                let percentage = 0;
+                const targetText = svgText.textContent;
+                const targetPercentage = parseInt(targetText);
+                const duration = 1500;
+                const interval = 16;
+                const steps = duration / interval;
+                const increment = targetPercentage / steps;
+                
+                const countUp = setInterval(() => {
+                    percentage += increment;
+                    if (percentage >= targetPercentage) {
+                        percentage = targetPercentage;
+                        clearInterval(countUp);
+                    }
+                    
+                    svgText.textContent = `${Math.round(percentage)}%`;
+                }, interval);
+            });
+            
+            // Reveal elements as you scroll
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.section-header, .card, .stat-card, .skills-icons, .donut-chart, .contact-card, .contact-item');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    // Show element when it's in view
+                    if (elementTop < windowHeight * 0.9) {
+                        if (element.classList.contains('card')) {
+                            // Add delay between cards
+                            const delay = parseFloat(element.style.getPropertyValue('--i') || 1) * 0.1;
+                            element.style.animationDelay = `${delay}s`;
+                        }
+                        
+                        element.style.animationPlayState = 'running';
+                        element.classList.add('animated');
+                    }
+                });
+            };
+            
+            // Check on page load
+            animateOnScroll();
+            
+            // Check when scrolling (but not too often)
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(function() {
+                        animateOnScroll();
+                        scrollTimeout = null;
+                    }, 10);
+                }
+            });
+            
+            // Add floating animation to elements
+            const addFloatingEffect = () => {
+                const elements = [
+                    ...document.querySelectorAll('.skill-icon'),
+                    ...document.querySelectorAll('.contact-icon')
+                ];
+                
+                elements.forEach((el, index) => {
+                    if (el) {
+                        el.classList.add('float-effect');
+                        // Stagger the animation
+                        el.style.animationDelay = `${index * 0.2}s`;
+                    }
+                });
+            };
+            
+            // Start floating animations after page loads
+            setTimeout(addFloatingEffect, 1500);
+            
+            // Handle window resize for responsive elements
+            window.addEventListener('resize', function() {
+                // Adjust chart sizes on smaller screens
+                const donutCharts = document.querySelectorAll('.donut-chart');
+                const windowWidth = window.innerWidth;
+                
+                donutCharts.forEach(chart => {
+                    if (windowWidth <= 480) {
+                        chart.style.transform = 'scale(0.8)';
+                    } else if (windowWidth <= 768) {
+                        chart.style.transform = 'scale(0.9)';
+                    } else {
+                        chart.style.transform = 'scale(1)';
+                    }
+                });
+            });
+            
+            // Trigger resize once to initialize
+            window.dispatchEvent(new Event('resize'));
+        });
+    </script>
+</body>
+</html>

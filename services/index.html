@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS Web Innovations</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="smoke-effect"></div>
+
+    <header>
+        <div class="logo">
+            <img src="assets/images/project1.jpg" alt="SS Web Innovations Logo">
+            <span class="logo-text">SS Web Innovations</span>
+            
+        </div>
+
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#expertise">My Expertise</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+    
+    
+    <section id="home" class="hero">
+        <div class="video-container">
+            <video autoplay muted loop>
+                <source src="assets/videos/background.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="hero-content">
+            <h1 >Innovative Web Solutions</h1>
+            <p>Transforming businesses with modern web development</p>
+            <a href="#contact" class="btn">Get a Quote</a>
+        </div>
+    </section>
+    
+    <section id="expertise" class="expertise-section">
+        <div class="container">
+            <h2 class="section-title fade-in">My Expertise</h2>
+            <div class="expertise-container fade-in">
+                <div class="expertise-item in">
+                    <div class="icon-container">
+                        <img src="your-icon-path-1.png" alt="Icon 1">
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>
+                        I specialize in creating high-quality, custom websites using modern web technologies. My focus is on making websites user-friendly, responsive, and fast.
+                    </p>
+                </div>
+                <div class="expertise-item in">
+                    <div class="icon-container">
+                        <img src="your-icon-path-2.png" alt="Icon 2">
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>
+                        Designing user-centered interfaces that provide an intuitive and enjoyable experience. I ensure seamless user interactions with creative, visually appealing designs.
+                    </p>
+                </div>
+                <div class="expertise-item in">
+                    <div class="icon-container">
+                        <img src="your-icon-path-3.png" alt="Icon 3">
+                    </div>
+                    <h3>Front-end Development</h3>
+                    <p>
+                        Expertise in building interactive and dynamic front-end applications. I work with HTML, CSS, JavaScript, and various frameworks to create engaging web experiences.
+                    </p>
+                </div>
+                <div class="expertise-item in">
+                    <div class="icon-container">
+                        <img src="your-icon-path-4.png" alt="Icon 4">
+                    </div>
+                    <h3>Back-end Development</h3>
+                    <p>
+                        Building scalable and robust back-end systems using Node.js, Express, and various databases. I ensure secure data handling and efficient server-side functionality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="services" class="fade-in services-section">
+        <h2>Access More Ways to Build Your Online Presence</h2>
+        <div class="services-grid">
+            <div class="service-box">
+                <h3>Custom Websites</h3>
+                <p>Fully tailored web design solutions to fit your brand and goals.</p>
+            </div>
+            <div class="service-box">
+                <h3>SEO Optimization</h3>
+                <p>Boost your website’s visibility on search engines with expert SEO.</p>
+            </div>
+            <div class="service-box">
+                <h3>eCommerce Solutions</h3>
+                <p>Seamless online store setup with secure payment integration.</p>
+            </div>
+            <div class="service-box">
+                <h3>Brand Identity</h3>
+                <p>We craft unique logos and visual branding to elevate your business.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="portfolio" class="portfolio-section">
+        <h2>Our Projects</h2>
+        <div class="portfolio-items">
+            <div class="portfolio-item" data-modal="project1">
+                <img src="assets/images/project1.jpg" alt="Project 1">
+                <div class="overlay">
+                    <h3>Project 1</h3>
+                    <p>Short Description</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-modal="project2">
+                <img src="assets/images/project1.jpg" alt="Project 2">
+                <div class="overlay">
+                    <h3>Project 2</h3>
+                    <p>Short Description</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-modal="project3">
+                <img src="assets/images/project1.jpg" alt="Project 3">
+                <div class="overlay">
+                    <h3>Project 3</h3>
+                    <p>Short Description</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-modal="project4">
+                <img src="assets/images/project1.jpg" alt="Project 4">
+                <div class="overlay">
+                    <h3>Project 4</h3>
+                    <p>Short Description</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-modal="project5">
+                <img src="assets/images/project1.jpg" alt="Project 5">
+                <div class="overlay">
+                    <h3>Project 5</h3>
+                    <p>Short Description</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-modal="project6">
+                <img src="assets/images/project1.jpg" alt="Project 6">
+                <div class="overlay">
+                    <h3>Project 6</h3>
+                    <p>Short Description</p>
+                </div>
+            </div>
+        </div>
+        <div class="more-projects">
+            <button id="moreProjectsBtn" class="btn">More Projects</button>
+        </div>
+      <!-- Modal for Project 1 -->
+<div id="project1" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Project 1 Details</h2>
+        <p>More detailed description about the project.</p>
+        
+        <a href="https://www.example1.com" class="view-site-btn" target="_blank">View Site</a>
+    </div>
+</div>
+
+<!-- Modal for Project 2 -->
+<div id="project2" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Project 2 Details</h2>
+        <p>More detailed description about the project.</p>
+       
+        <a href="https://www.example2.com" class="view-site-btn" target="_blank">View Site</a>
+    </div>
+</div>
+
+    
+    </section>
+    
+    
+    <section id="contact" class="fade-in">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    <section id="reviews" class="fade-in">
+        <h2>What Our Clients Say</h2>
+        <iframe src="reviews.html" width="100%" height="500px" style="border:none;"></iframe>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 SS Web Innovations. All rights reserved.</p>
+    </footer>
+</body>
+</html>

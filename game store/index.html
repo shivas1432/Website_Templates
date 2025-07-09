@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Game Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="animated-edge"></div>
+    
+    <header>
+        <div class="logo">
+            <i class="fas fa-gamepad"></i> EPIC GAMES
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="togglePopup('game-types-popup')">Game Types</a>
+                    <div id="game-types-popup" class="popup hidden">
+                        <h2>GAME TYPES</h2>
+                        <ul class="game-types-list">
+                            <li><a href="#" onclick="showGamesByCategory('action')">Action</a></li>
+                            <li><a href="#" onclick="showGamesByCategory('adventure')">Adventure</a></li>
+                            <li><a href="#" onclick="showGamesByCategory('rpg')">Role-Playing</a></li>
+                            <li><a href="#" onclick="showGamesByCategory('strategy')">Strategy</a></li>
+                            <li><a href="#" onclick="showGamesByCategory('simulation')">Simulation</a></li>
+                            <li><a href="#" onclick="showGamesByCategory('puzzle')">Puzzle</a></li>
+                            <li><a href="#" onclick="showGamesByCategory('sports')">Sports</a></li>
+                            <li><a href="#" onclick="showGamesByCategory('horror')">Horror</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="togglePopup('games-popup')">Popular Games</a>
+                    <div id="games-popup" class="popup hidden">
+                        <h2>POPULAR GAMES</h2>
+                        <ul class="game-list">
+                            <li><a href="#" onclick="showGameDetails('game1')">The Legend of Zelda: Breath of the Wild</a></li>
+                            <li><a href="#" onclick="showGameDetails('game2')">The Last of Us Part II</a></li>
+                            <li><a href="#" onclick="showGameDetails('game3')">God of War</a></li>
+                            <li><a href="#" onclick="showGameDetails('game4')">Red Dead Redemption 2</a></li>
+                            <li><a href="#" onclick="showGameDetails('game5')">Cyberpunk 2077</a></li>
+                            <li><a href="#" onclick="showGameDetails('game6')">Assassin's Creed Valhalla</a></li>
+                            <li><a href="#" onclick="showGameDetails('game7')">Hades</a></li>
+                            <li><a href="#" onclick="showGameDetails('game8')">Minecraft</a></li>
+                            <li><a href="#" onclick="showGameDetails('game9')">Among Us</a></li>
+                            <li><a href="#" onclick="showGameDetails('game10')">Animal Crossing: New Horizons</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="togglePopup('contact-popup')">Contact</a>
+                    <div id="contact-popup" class="popup hidden">
+                        <h2>CONTACT US</h2>
+                        <p>Feel free to reach out to us through the following channels:</p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:support@gamestore.com">support@gamestore.com</a></p>
+                        <p><i class="fas fa-phone"></i> 1-800-555-1234</p>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="togglePopup('about-popup')">About</a>
+                    <div id="about-popup" class="popup hidden">
+                        <h2>ABOUT</h2>
+                        <p>We are passionate about bringing you the best games available. Our mission is to provide a diverse selection of games for all types of players.</p>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search for games...">
+            <button onclick="searchGames()"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    
+    <main>
+        <div id="home" class="section">
+            <div class="hero-container">
+                <h1>DISCOVER THE ULTIMATE GAMING EXPERIENCE</h1>
+                <p>Explore the best titles from around the gaming universe</p>
+                <button class="cta-button">BROWSE NOW</button>
+
+                <div class="slider">
+                    <div class="slides">
+                        <div class="slide"><img src="call-of-duty-black-ops-6-game-4k-wallpaper-uhdpaper.com-813@0@j.jpg" alt="Featured Game 1"></div>
+                        <div class="slide"><img src="wp3276758-pubg-4k-wallpapers.jpg" alt="Featured Game 2"></div>
+                        <div class="slide"><img src="wp2366075-fortnite-battle-royal-hd-wallpapers.jpg" alt="Featured Game 3"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">TRENDING GAMES</h2>
+            <div class="game-grid">
+                <div class="game-card">
+                    <div class="game-img-container">
+                        <img src="titans.jpeg" alt="TITANS" class="game-image">
+                        <div class="game-overlay">
+                            <button class="play-button" onclick="toggleMusic('music1')"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>TITANS</h3>
+                        <div class="game-meta">
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                            <span class="game-price">$59.99</span>
+                        </div>
+                    </div>
+                    <audio id="music1" src="game1-bgm.mp3"></audio>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-img-container">
+                        <img src="ratchet.jpg" alt="RATCHET" class="game-image">
+                        <div class="game-overlay">
+                            <button class="play-button" onclick="toggleMusic('music2')"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>RATCHET</h3>
+                        <div class="game-meta">
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.7</span>
+                            <span class="game-price">$49.99</span>
+                        </div>
+                    </div>
+                    <audio id="music2" src="game2-bgm.mp3"></audio>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-img-container">
+                        <img src="hawked.jpg" alt="HAWKED" class="game-image">
+                        <div class="game-overlay">
+                            <button class="play-button" onclick="toggleMusic('music3')"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>HAWKED</h3>
+                        <div class="game-meta">
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.5</span>
+                            <span class="game-price">$39.99</span>
+                        </div>
+                    </div>
+                    <audio id="music3" src="game3-bgm.mp3"></audio>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-img-container">
+                        <img src="forza.jpeg" alt="FORZA" class="game-image">
+                        <div class="game-overlay">
+                            <button class="play-button" onclick="toggleMusic('music4')"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>FORZA</h3>
+                        <div class="game-meta">
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.9</span>
+                            <span class="game-price">$69.99</span>
+                        </div>
+                    </div>
+                    <audio id="music4" src="game4-bgm.mp3"></audio>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-img-container">
+                        <img src="forza.jpeg" alt="FORZA HORIZON" class="game-image">
+                        <div class="game-overlay">
+                            <button class="play-button" onclick="toggleMusic('music5')"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>FORZA HORIZON</h3>
+                        <div class="game-meta">
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                            <span class="game-price">$59.99</span>
+                        </div>
+                    </div>
+                    <audio id="music5" src="game4-bgm.mp3"></audio>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-img-container">
+                        <img src="forza.jpeg" alt="NEED FOR SPEED" class="game-image">
+                        <div class="game-overlay">
+                            <button class="play-button" onclick="toggleMusic('music6')"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>NEED FOR SPEED</h3>
+                        <div class="game-meta">
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.6</span>
+                            <span class="game-price">$49.99</span>
+                        </div>
+                    </div>
+                    <audio id="music6" src="game4-bgm.mp3"></audio>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-img-container">
+                        <img src="forza.jpeg" alt="F1 RACING" class="game-image">
+                        <div class="game-overlay">
+                            <button class="play-button" onclick="toggleMusic('music7')"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>F1 RACING</h3>
+                        <div class="game-meta">
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.7</span>
+                            <span class="game-price">$54.99</span>
+                        </div>
+                    </div>
+                    <audio id="music7" src="game4-bgm.mp3"></audio>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-img-container">
+                        <img src="forza.jpeg" alt="GRAN TURISMO" class="game-image">
+                        <div class="game-overlay">
+                            <button class="play-button" onclick="toggleMusic('music8')"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>GRAN TURISMO</h3>
+                        <div class="game-meta">
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                            <span class="game-price">$59.99</span>
+                        </div>
+                    </div>
+                    <audio id="music8" src="game4-bgm.mp3"></audio>
+                </div>
+            </div>
+            
+            <div class="featured-section">
+                <div class="sidebar">
+                    <h2>PLAY & INSTALL</h2>
+                    <div class="scroll-container">
+                        <div class="sidebar-item">
+                            <div class="game-name"><h4>The Legend of Zelda</h4></div>
+                            <button class="play-button"><i class="fas fa-play"></i></button>
+                        </div>
+                        
+                        <div class="sidebar-item">
+                            <div class="game-name"><h4>The Last of Us Part II</h4></div>
+                            <button class="play-button"><i class="fas fa-play"></i></button>
+                        </div>
+                        
+                        <div class="sidebar-item">
+                            <div class="game-name"><h4>God of War</h4></div>
+                            <button class="play-button"><i class="fas fa-play"></i></button>
+                        </div>
+                        
+                        <div class="sidebar-item">
+                            <div class="game-name"><h4>Red Dead Redemption 2</h4></div>
+                            <button class="play-button"><i class="fas fa-play"></i></button>
+                        </div>
+                        
+                        <div class="sidebar-item">
+                            <div class="game-name"><h4>Cyberpunk 2077</h4></div>
+                            <button class="play-button"><i class="fas fa-play"></i></button>
+                        </div>
+                        
+                        <div class="sidebar-item">
+                            <div class="game-name"><h4>Assassin's Creed</h4></div>
+                            <button class="play-button"><i class="fas fa-play"></i></button>
+                        </div>
+                        
+                        <div class="sidebar-item">
+                            <div class="game-name"><h4>Minecraft</h4></div>
+                            <button class="play-button"><i class="fas fa-play"></i></button>
+                        </div>
+                        
+                        <div class="sidebar-item">
+                            <div class="game-name"><h4>Among Us</h4></div>
+                            <button class="play-button"><i class="fas fa-play"></i></button>
+                        </div>
+                        
+                        <div class="sidebar-item">
+                            <div class="game-name"><h4>Animal Crossing</h4></div>
+                            <button class="play-button"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="featured-video">
+                    <video controls autoplay loop muted poster="poster.png">
+                        <source src="4354243-uhd_3840_2160_25fps.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-gamepad"></i> EPIC GAMES
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About Us</a>
+            </div>
+            
+            <div class="social-media">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Epic Game Store. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

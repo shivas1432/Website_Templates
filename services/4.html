@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive 3D Avatar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Load model-viewer from Google -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #0e0e0e, #1c1c1c);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #avatar-container {
+      width: 300px;
+      height: 300px;
+      perspective: 1000px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      --poster-color: transparent;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="avatar-container">
+    <!-- Using GLB 3D avatar model -->
+    <model-viewer 
+    src="avatar.glb"
+      alt="3D Avatar"
+      auto-rotate
+      camera-controls
+      interaction-prompt="none"
+      shadow-intensity="1"
+      disable-zoom
+      exposure="1.2"
+      ar
+      ar-modes="webxr scene-viewer quick-look">
+    </model-viewer>
+  </div>
+
+</body>
+</html>

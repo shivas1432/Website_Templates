@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIANTIC - Evolution of Technology (1950-2050)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary-color: #00f0ff;
+            --secondary-color: #ff6b00;
+            --tertiary-color: #ff0055;
+            --bg-color: #051020;
+            --text-color: #e0e0e0;
+            --section-gap: 200px;
+            --grid-color: rgba(0, 240, 255, 0.05);
+            --edge-glow: rgba(0, 240, 255, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(5, 16, 32, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary-color);
+        }
+        
+        .logo span {
+            color: var(--text-color);
+            font-size: 12px;
+            letter-spacing: 1px;
+            display: block;
+            text-transform: uppercase;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .container {
+            width: 100%;
+            padding-top: 100px;
+            position: relative;
+            min-height: calc(100vh - 100px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .timeline {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, 
+                rgba(0, 240, 255, 0.2),
+                rgba(255, 107, 0, 0.2),
+                rgba(255, 0, 85, 0.2));
+            z-index: 1;
+            height: 100%;
+        }
+        
+        .timeline::before,
+        .timeline::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        
+        .timeline::before {
+            top: 100px;
+            background: var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+        
+        .timeline::after {
+            bottom: 100px;
+            background: var(--tertiary-color);
+            box-shadow: 0 0 20px var(--tertiary-color);
+        }
+        
+        section {
+            min-height: 80vh;
+            padding: 80px 10%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-bottom: 0;
+        }
+        
+        #contact {
+            min-height: auto;
+            padding-bottom: 120px;
+        }
+        
+        .timeline-node {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+        
+        .node-1 { top: 20%; background: var(--primary-color); box-shadow: 0 0 15px var(--primary-color); }
+        .node-2 { top: 40%; background: var(--secondary-color); box-shadow: 0 0 15px var(--secondary-color); }
+        .node-3 { top: 60%; background: #00ff88; box-shadow: 0 0 15px #00ff88; }
+        .node-4 { top: 80%; background: var(--tertiary-color); box-shadow: 0 0 15px var(--tertiary-color); }
+        
+        .tech-era {
+            width: 50%;
+            position: relative;
+            padding: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+        
+        .tech-era.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .tech-era:nth-child(odd) {
+            margin-right: auto;
+            padding-right: 80px;
+            text-align: right;
+        }
+        
+        .tech-era:nth-child(even) {
+            margin-left: auto;
+            padding-left: 80px;
+            text-align: left;
+        }
+        
+        .tech-era::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: currentColor;
+            top: 50%;
+        }
+        
+        .tech-era:nth-child(odd)::before {
+            right: 0;
+        }
+        
+        .tech-era:nth-child(even)::before {
+            left: 0;
+        }
+        
+        .era-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .era-1 { color: var(--primary-color); }
+        .era-2 { color: var(--secondary-color); }
+        .era-3 { color: #00ff88; }
+        .era-4 { color: var(--tertiary-color); }
+        
+        .era-year {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        .era-description {
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        .tech-icon {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 30px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(5, 16, 32, 0.5);
+            border: 2px solid currentColor;
+            box-shadow: 0 0 30px currentColor;
+        }
+        
+        .tech-icon svg {
+            width: 60px;
+            height: 60px;
+            fill: currentColor;
+        }
+        
+        .tech-icon::before,
+        .tech-icon::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            border-radius: 50%;
+            border: 1px dashed currentColor;
+            opacity: 0.3;
+            animation: rotate 20s linear infinite;
+        }
+        
+        .tech-icon::after {
+            width: 200%;
+            height: 200%;
+            animation-direction: reverse;
+            animation-duration: 30s;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .tech-features {
+            margin-top: 30px;
+        }
+        
+        .feature {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tech-era:nth-child(odd) .feature {
+            justify-content: flex-end;
+            text-align: right;
+        }
+        
+        .feature-dot {
+            width: 8px;
+            height: 8px;
+            background: currentColor;
+            border-radius: 50%;
+            margin: 0 10px;
+            box-shadow: 0 0 5px currentColor;
+        }
+        
+        .info-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 1px solid currentColor;
+            opacity: 0.3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .tech-era:nth-child(odd) .info-circle {
+            right: -150px;
+        }
+        
+        .tech-era:nth-child(even) .info-circle {
+            left: -150px;
+        }
+        
+        .info-circle::before,
+        .info-circle::after {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            border: 1px dashed currentColor;
+            opacity: 0.2;
+            animation: pulse 5s ease-in-out infinite alternate;
+        }
+        
+        .info-circle::after {
+            width: 140%;
+            height: 140%;
+            animation-delay: 1s;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 0.4;
+            }
+        }
+        
+        .circle-text {
+            font-size: 1rem;
+            color: currentColor;
+            text-align: center;
+            max-width: 60%;
+            line-height: 1.4;
+        }
+        
+        .tech-connections {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, currentColor, transparent);
+        }
+        
+        .tech-era:nth-child(odd) .tech-connections {
+            right: 0;
+            top: 50%;
+        }
+        
+        .tech-era:nth-child(even) .tech-connections {
+            left: 0;
+            top: 50%;
+        }
+        
+        .footer {
+            padding: 40px 10%;
+            background: rgba(5, 10, 20, 0.9);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            margin-top: 0;
+            border-top: 1px solid var(--primary-color);
+        }
+        
+        .footer p {
+            margin: 20px 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .glowing-orb {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle at center,
+                rgba(0, 240, 255, 0.2),
+                transparent 70%
+            );
+            pointer-events: none;
+            z-index: -1;
+            filter: blur(40px);
+            opacity: 0.5;
+        }
+        
+        .background-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+            transition: background-size 0.5s ease;
+        }
+        
+        /* Top edge animation styles */
+        .top-edge-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .top-edge-animation .edge-line {
+            position: absolute;
+            height: 100%;
+            width: 25%;
+            background: var(--primary-color);
+            opacity: 0.5;
+            animation: edgeSlide 8s linear infinite;
+        }
+        
+        .top-edge-animation .edge-line:nth-child(2) {
+            animation-delay: 4s;
+            background: var(--secondary-color);
+            right: 0;
+        }
+        
+        .top-edge-animation .edge-circle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            top: -3px;
+            box-shadow: 0 0 10px var(--primary-color);
+            animation: circleBounce 8s ease-in-out infinite;
+        }
+        
+        .top-edge-animation .edge-pulse {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: var(--primary-color);
+            opacity: 0.8;
+            animation: pulsate 4s ease-in-out infinite;
+        }
+        
+        @keyframes edgeSlide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(500%); }
+        }
+        
+        @keyframes circleBounce {
+            0% { left: 0%; }
+            50% { left: 100%; }
+            100% { left: 0%; }
+        }
+        
+        @keyframes pulsate {
+            0% { transform: translateX(-50%) scaleX(0.5); opacity: 0.2; }
+            50% { transform: translateX(-50%) scaleX(2); opacity: 0.8; }
+            100% { transform: translateX(-50%) scaleX(0.5); opacity: 0.2; }
+        }
+        
+        /* Radar animation */
+        .radar-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid var(--primary-color);
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .radar-sweep {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                transparent 50%,
+                var(--primary-color) 51%,
+                transparent 52%,
+                transparent 100%
+            );
+            animation: radarSweep 4s linear infinite;
+        }
+        
+        @keyframes radarSweep {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Data grid animation */
+        .data-grid {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            width: calc(100% - 30px);
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .data-node {
+            width: 30%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--primary-color) 20%, 
+                var(--secondary-color) 80%, 
+                transparent 100%);
+            opacity: 0.5;
+            position: relative;
+            overflow: hidden;
+            animation: dataFlow 10s linear infinite;
+        }
+        
+        .data-node:nth-child(2) {
+            animation-delay: 3.3s;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--secondary-color) 20%, 
+                var(--tertiary-color) 80%, 
+                transparent 100%);
+        }
+        
+        .data-node:nth-child(3) {
+            animation-delay: 6.6s;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--tertiary-color) 20%, 
+                var(--primary-color) 80%, 
+                transparent 100%);
+        }
+        
+        .data-node::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: dataPattern 4s linear infinite;
+        }
+        
+        @keyframes dataFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        @keyframes dataPattern {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 0; }
+        }
+        
+        @media (max-width: 992px) {
+            .tech-era {
+                width: 90%;
+                margin: 0 auto;
+                text-align: left;
+                padding: 30px;
+            }
+            
+            .tech-era:nth-child(odd) {
+                padding-right: 30px;
+                text-align: left;
+            }
+            
+            .timeline {
+                left: 30px;
+            }
+            
+            .timeline-node {
+                left: 30px;
+            }
+            
+            .tech-era::before {
+                display: none;
+            }
+            
+            .tech-era:nth-child(odd) .feature {
+                justify-content: flex-start;
+                text-align: left;
+            }
+            
+            .info-circle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-grid"></div>
+    <div class="glowing-orb"></div>
+    
+    <div class="top-edge-animation">
+        <div class="edge-line"></div>
+        <div class="edge-circle"></div>
+        <div class="edge-line"></div>
+        <div class="edge-pulse"></div>
+    </div>
+    
+    <div class="radar-container">
+        <div class="radar-sweep"></div>
+    </div>
+    
+    <div class="data-grid">
+        <div class="data-node"></div>
+        <div class="data-node"></div>
+        <div class="data-node"></div>
+    </div>
+    
+    <header>
+        <div class="logo">
+            DIANTIC
+            <span>Technology Evolution</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#era1">1950s-1980s</a></li>
+                <li><a href="#era2">1990s-2010s</a></li>
+                <li><a href="#era3">2020s-2030s</a></li>
+                <li><a href="#era4">2040s-2050s</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="timeline"></div>
+        
+        <section id="era1">
+            <div class="timeline-node node-1"></div>
+            <div class="tech-era era-1">
+                <h2 class="era-title">EARLY COMPUTATION</h2>
+                <h3 class="era-year">1950s-1980s</h3>
+                <p class="era-description">
+                    The era of pioneering giant room-sized computers to the birth of the personal computer. 
+                    From ENIAC to Apple II, this period laid the fundamental building blocks for our digital future.
+                    Major trends included miniaturization, increasing processing power, and the dawn of personal computing.
+                </p>
+                <div class="tech-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2v16h16V4H4zm8 3h4v2h-4V7zm0 4h4v2h-4v-2zm0 4h4v2h-4v-2zM6 7h4v2H6V7zm0 4h4v2H6v-2zm0 4h4v2H6v-2z"/>
+                    </svg>
+                </div>
+                <div class="tech-features">
+                    <div class="feature">
+                        <span>First integrated circuits</span>
+                        <div class="feature-dot"></div>
+                    </div>
+                    <div class="feature">
+                        <span>ARPANET (1969)</span>
+                        <div class="feature-dot"></div>
+                    </div>
+                    <div class="feature">
+                        <span>IBM PC (1981)</span>
+                        <div class="feature-dot"></div>
+                    </div>
+                </div>
+                <div class="info-circle">
+                    <div class="circle-text">
+                        The foundation era when basic computing principles were established
+                    </div>
+                </div>
+                <div class="tech-connections"></div>
+            </div>
+        </section>
+        
+        <section id="era2">
+            <div class="timeline-node node-2"></div>
+            <div class="tech-era era-2">
+                <h2 class="era-title">EXPLORER IN INDICATION</h2>
+                <h3 class="era-year">1990s-2010s</h3>
+                <p class="era-description">
+                    From secret hubs to open-sourced networks, this era showed the birth of the modern internet and mobile revolution.
+                    The World Wide Web transformed how we connect, share information, and conduct business,
+                    while smartphones changed how we interact with technology on a daily basis.
+                </p>
+                <div class="tech-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.9 17.39c-.26-.8-1.01-1.39-1.9-1.39h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39M11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1a2 2 0 0 0 2 2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2z"/>
+                    </svg>
+                </div>
+                <div class="tech-features">
+                    <div class="feature">
+                        <div class="feature-dot"></div>
+                        <span>World Wide Web (1991)</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-dot"></div>
+                        <span>Smartphone revolution</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-dot"></div>
+                        <span>Social media emergence</span>
+                    </div>
+                </div>
+                <div class="info-circle">
+                    <div class="circle-text">
+                        The connected era when technology became part of everyday life
+                    </div>
+                </div>
+                <div class="tech-connections"></div>
+            </div>
+        </section>
+        
+        <section id="era3">
+            <div class="timeline-node node-3"></div>
+            <div class="tech-era era-3">
+                <h2 class="era-title">THEIPSO FINEUM</h2>
+                <h3 class="era-year">2020s-2030s</h3>
+                <p class="era-description">
+                    Evolving intelligence with neural networks that began to mimic human abilities. 
+                    Artificial intelligence transforms how we work, create and interact with machines.
+                    This period marks the beginning of true machine learning systems that can adapt, learn, and evolve.
+                </p>
+                <div class="tech-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 3c3.88 0 7 3.14 7 7 0 2.8-1.63 5.19-4.01 6.32V21H8.01v-4.68C5.63 15.19 4 12.8 4 10c0-3.86 3.12-7 7-7zm-1 15h2v-1h-2v1zm0-4h2v-1h-2v1zm1-9c-2.76 0-5 2.24-5 5 0 1.64.8 3.09 2.03 4h5.95A4.97 4.97 0 0 0 18 10c0-2.76-2.24-5-5-5z"/>
+                    </svg>
+                </div>
+                <div class="tech-features">
+                    <div class="feature">
+                        <span>Generative AI</span>
+                        <div class="feature-dot"></div>
+                    </div>
+                    <div class="feature">
+                        <span>Quantum computing</span>
+                        <div class="feature-dot"></div>
+                    </div>
+                    <div class="feature">
+                        <span>Neural interfaces</span>
+                        <div class="feature-dot"></div>
+                    </div>
+                </div>
+                <div class="info-circle">
+                    <div class="circle-text">
+                        The intelligent era when machines began to think and create
+                    </div>
+                </div>
+                <div class="tech-connections"></div>
+            </div>
+        </section>
+        
+        <section id="era4">
+            <div class="timeline-node node-4"></div>
+            <div class="tech-era era-4">
+                <h2 class="era-title">SHIELDING</h2>
+                <h3 class="era-year">2040s-2050s</h3>
+                <p class="era-description">
+                    The era of human-machine fusion where biological and digital systems intertwine.
+                    Advanced neural implants, molecular computing, and synthetic biology create a new paradigm 
+                    where the boundaries between human and technology blur into a seamless existence.
+                </p>
+                <div class="tech-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2m-1 5v8h2V7h-2m-3 10h8a5 5 0 0 0-8 0z"/>
+                    </svg>
+                </div>
+                <div class="tech-features">
+                    <div class="feature">
+                        <div class="feature-dot"></div>
+                        <span>Consciousness transfer</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-dot"></div>
+                        <span>Molecular computing</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-dot"></div>
+                        <span>Synthetic biology</span>
+                    </div>
+                </div>
+                <div class="info-circle">
+                    <div class="circle-text">
+                        The fusion era when human and machine begin to merge
+                    </div>
+                </div>
+                <div class="tech-connections"></div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <div class="tech-era">
+                <h2 class="era-title" style="color: white;">COGNITIVE CIRCUIT</h2>
+                <p class="era-description">
+                    Explore the complete evolution of computing technology from the earliest electronic calculators to the 
+                    predicted future of human-machine symbiosis. This journey represents our collective technological heritage
+                    and offers insights into where we might be heading next.
+                </p>
+                <div class="tech-features" style="margin-top: 40px;">
+                    <div class="feature">
+                        <span>Research continues</span>
+                        <div class="feature-dot" style="background: white;"></div>
+                    </div>
+                    <div class="feature">
+                        <span>Innovation never stops</span>
+                        <div class="feature-dot" style="background: white;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer class="footer">
+        <p>© 2025 DIANTIC. All rights reserved by Shiva.</p>
+        <p>A visual journey through the evolution of technology from 1950 to 2050.</p>
+    </footer>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Parallax scrolling effect
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            const scrollPercent = scrollPosition / (document.body.scrollHeight - window.innerHeight);
+            
+            // Make timeline nodes visible on scroll
+            const techEras = document.querySelectorAll('.tech-era');
+            techEras.forEach(era => {
+                const eraBounding = era.getBoundingClientRect();
+                if (eraBounding.top < window.innerHeight * 0.8) {
+                    era.classList.add('visible');
+                }
+            });
+            
+            // Move glowing orb based on scroll position
+            const glowingOrb = document.querySelector('.glowing-orb');
+            glowingOrb.style.top = `${scrollPosition * 0.5 % window.innerHeight}px`;
+            glowingOrb.style.left = `${Math.sin(scrollPosition * 0.001) * window.innerWidth * 0.3 + window.innerWidth * 0.5}px`;
+            
+            // Activate edge animations based on scroll
+            const topEdgeAnimation = document.querySelector('.top-edge-animation');
+            const radarContainer = document.querySelector('.radar-container');
+            const dataGrid = document.querySelector('.data-grid');
+            const backgroundGrid = document.querySelector('.background-grid');
+            
+            // Show top edge animations when scrolling
+            if (scrollPosition > 50) {
+                topEdgeAnimation.style.opacity = '1';
+                radarContainer.style.opacity = '1';
+                dataGrid.style.opacity = '1';
+            } else {
+                topEdgeAnimation.style.opacity = '0';
+                radarContainer.style.opacity = '0';
+                dataGrid.style.opacity = '0';
+            }
+            
+            // Change background grid size based on scroll
+            const gridSize = 50 - (scrollPercent * 20);
+            backgroundGrid.style.backgroundSize = `${gridSize}px ${gridSize}px`;
+            
+            // Move edge circle based on scroll position
+            const edgeCircle = document.querySelector('.edge-circle');
+            edgeCircle.style.left = `${scrollPercent * 100}%`;
+            
+            // Pulse frequency increases with scroll speed
+            const edgePulse = document.querySelector('.edge-pulse');
+            const scrollSpeed = Math.min(10, Math.abs(scrollPosition - lastScrollPosition) * 0.5);
+            edgePulse.style.animationDuration = `${4 - scrollSpeed * 0.3}s`;
+            
+            // Create data bursts on scroll
+            if (Math.abs(scrollPosition - lastScrollPosition) > 20) {
+                createDataBurst();
+            }
+            
+            lastScrollPosition = scrollPosition;
+        });
+        
+        let lastScrollPosition = 0;
+        
+        // Function to create data bursts
+        function createDataBurst() {
+            const burst = document.createElement('div');
+            burst.className = 'data-burst';
+            burst.style.position = 'fixed';
+            burst.style.top = `${Math.random() * window.innerHeight}px`;
+            burst.style.left = `${Math.random() * window.innerWidth}px`;
+            burst.style.width = '2px';
+            burst.style.height = '2px';
+            burst.style.borderRadius = '50%';
+            burst.style.backgroundColor = getRandomColor();
+            burst.style.boxShadow = `0 0 10px ${burst.style.backgroundColor}`;
+            burst.style.zIndex = '1000';
+            burst.style.pointerEvents = 'none';
+            document.body.appendChild(burst);
+            
+            // Animation
+            burst.animate([
+                { transform: 'scale(1)', opacity: 1 },
+                { transform: 'scale(20)', opacity: 0 }
+            ], {
+                duration: 800,
+                easing: 'ease-out'
+            }).onfinish = () => {
+                document.body.removeChild(burst);
+            };
+        }
+        
+        function getRandomColor() {
+            const colors = [
+                'var(--primary-color)',
+                'var(--secondary-color)',
+                'var(--tertiary-color)'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Interactive hover effects
+        const techIcons = document.querySelectorAll('.tech-icon');
+        techIcons.forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = '0.3s ease';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Create random stars in background
+        const container = document.querySelector('.container');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.style.position = 'absolute';
+            star.style.width = `${Math.random() * 2 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.backgroundColor = 'white';
+            star.style.borderRadius = '50%';
+            star.style.opacity = Math.random() * 0.5 + 0.2;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 400}%`;
+            star.style.animation = `twinkle ${Math.random() * 5 + 3}s infinite alternate`;
+            container.appendChild(star);
+        }
+        
+        // Add animation for twinkling stars
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes twinkle {
+                0% { opacity: 0.2; }
+                100% { opacity: 0.8; }
+            }
+            
+            .data-burst {
+                position: fixed;
+                pointer-events: none;
+                z-index: 1000;
+            }
+            
+            @keyframes edgeScan {
+                0% { transform: scaleX(0); opacity: 0.8; }
+                100% { transform: scaleX(1); opacity: 0; }
+            }
+            
+            .edge-scan {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: var(--primary-color);
+                transform-origin: left;
+                animation: edgeScan 2s linear forwards;
+                z-index: 1001;
+                pointer-events: none;
+            }
+            
+            .floating-data {
+                position: fixed;
+                font-family: monospace;
+                font-size: 10px;
+                color: var(--primary-color);
+                white-space: nowrap;
+                pointer-events: none;
+                z-index: 1000;
+                text-shadow: 0 0 5px var(--primary-color);
+            }
+            
+            .cyber-grid {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                perspective: 500px;
+                z-index: -1;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            }
+            
+            .grid-container {
+                width: 100%;
+                height: 100%;
+                transform-style: preserve-3d;
+                transform: rotateX(60deg);
+            }
+            
+            .grid-line {
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, 
+                    transparent, 
+                    var(--grid-color), 
+                    transparent);
+                transform-origin: center;
+                animation: gridMove 8s linear infinite;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Create cyber grid
+        const cyberGrid = document.createElement('div');
+        cyberGrid.className = 'cyber-grid';
+        document.body.appendChild(cyberGrid);
+        
+        const gridContainer = document.createElement('div');
+        gridContainer.className = 'grid-container';
+        cyberGrid.appendChild(gridContainer);
+        
+        // Create grid lines
+        for (let i = 0; i < 20; i++) {
+            const line = document.createElement('div');
+            line.className = 'grid-line';
+            line.style.top = `${i * 10}%`;
+            line.style.animationDelay = `${i * 0.2}s`;
+            gridContainer.appendChild(line);
+        }
+        
+        // Create random data floating animation
+        const createFloatingData = () => {
+            const data = document.createElement('div');
+            data.className = 'floating-data';
+            data.textContent = getRandomDataText();
+            data.style.left = `${Math.random() * window.innerWidth}px`;
+            data.style.top = `${Math.random() * window.innerHeight}px`;
+            data.style.opacity = Math.random() * 0.5 + 0.3;
+            document.body.appendChild(data);
+            
+            // Animation
+            const duration = Math.random() * 5000 + 3000;
+            const animation = data.animate([
+                { transform: 'translateY(0)', opacity: data.style.opacity },
+                { transform: 'translateY(-100px)', opacity: 0 }
+            ], {
+                duration: duration,
+                easing: 'ease-out'
+            });
+            
+            animation.onfinish = () => {
+                document.body.removeChild(data);
+                // Create a new one to keep the effect going
+                if (document.visibilityState === 'visible') {
+                    createFloatingData();
+                }
+            };
+        };
+        
+        function getRandomDataText() {
+            const texts = [
+                '0x1F4A9', 'DATA SYNC', 'ANALYZING', '01001010',
+                'SYSTEM OK', 'PROCESSING', 'SCANNING', 'COMPLETE',
+                'ERROR 404', 'ACCESS GRANTED', 'CONNECTING', 'UPLOAD'
+            ];
+            return texts[Math.floor(Math.random() * texts.length)];
+        }
+        
+        // Start floating data animations
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                createFloatingData();
+            }, i * 300);
+        }
+        
+        // Create edge scan animation on scroll
+        let scanTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scanTimeout);
+            scanTimeout = setTimeout(() => {
+                const scan = document.createElement('div');
+                scan.className = 'edge-scan';
+                document.body.appendChild(scan);
+                
+                setTimeout(() => {
+                    document.body.removeChild(scan);
+                }, 2000);
+            }, 300);
+            
+            // Show cyber grid during scrolling
+            cyberGrid.style.opacity = '0.3';
+            clearTimeout(gridTimeout);
+            gridTimeout = setTimeout(() => {
+                cyberGrid.style.opacity = '0';
+            }, 1000);
+        });
+        
+        let gridTimeout;
+        
+        // Function to ensure the timeline has correct height
+        function adjustTimelineHeight() {
+            const container = document.querySelector('.container');
+            const lastSection = document.querySelector('#contact');
+            const timeline = document.querySelector('.timeline');
+            
+            if (timeline && container && lastSection) {
+                const containerHeight = container.offsetHeight;
+                const lastSectionBottom = lastSection.offsetTop + lastSection.offsetHeight;
+                timeline.style.height = Math.min(containerHeight, lastSectionBottom) + 'px';
+            }
+        }
+        
+        // Adjust timeline on load and resize
+        window.addEventListener('load', adjustTimelineHeight);
+        window.addEventListener('resize', adjustTimelineHeight);
+        
+        // Make the first section visible by default
+        document.querySelector('.tech-era').classList.add('visible');
+        
+        // Cursor effect for glowing trail
+        document.addEventListener('mousemove', function(e) {
+            const trail = document.createElement('div');
+            trail.style.position = 'absolute';
+            trail.style.width = '5px';
+            trail.style.height = '5px';
+            trail.style.backgroundColor = 'rgba(0, 240, 255, 0.5)';
+            trail.style.borderRadius = '50%';
+            trail.style.pointerEvents = 'none';
+            trail.style.left = `${e.pageX}px`;
+            trail.style.top = `${e.pageY}px`;
+            trail.style.zIndex = '9999';
+            document.body.appendChild(trail);
+            
+            setTimeout(function() {
+                trail.style.opacity = '0';
+                trail.style.transition = 'opacity 0.5s ease';
+                setTimeout(function() {
+                    document.body.removeChild(trail);
+                }, 500);
+            }, 100);
+        });
+    });
+    </script>
+</body>
+</html>

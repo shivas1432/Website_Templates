@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MELODY PULSE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="animated-edge"></div>
+  
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fas fa-music"></i> MELODY PULSE
+      </div>
+      
+      <div class="player-controls">
+        <span class="song-name1">
+          <i class="fas fa-play-circle"></i> 
+          PLAYING: SHAPE OF YOU
+        </span>
+        <button id="playPauseBtn" class="control-button">
+          <i class="fas fa-play"></i>
+        </button>
+        <button id="volumeDownBtn" class="control-button">
+          <i class="fas fa-volume-down"></i>
+        </button>
+        <button id="volumeUpBtn" class="control-button">
+          <i class="fas fa-volume-up"></i>
+        </button>
+      </div>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
+  </header>
+  
+  <div class="big-container">
+    <div class="sidebar"> 
+      <div class="profile-section">
+        <img src="profile-photo.jpg" alt="profile-photo" class="profile-photo">
+        <h3 class="profile-name">shivashanker kanugula</h3>
+      </div>
+      
+      <div id="top-section">
+        <h4><i class="fas fa-compass icon"></i>Discover</h4>
+        <h4><i class="fas fa-chart-line icon"></i>Trending</h4>
+        <h4><i class="fas fa-compact-disc icon"></i>Album</h4>
+        <h4><i class="fas fa-list icon"></i>Playlist</h4>
+        <h4><i class="fas fa-heart icon"></i>Favorites</h4>
+      </div>
+      
+      <div id="bottom-section">
+        <h4><i class="fas fa-user icon"></i>Account</h4> 
+        <h4><i class="fas fa-cog icon"></i>Settings</h4>
+        <h4><i class="fas fa-sign-out-alt icon"></i>Logout</h4>
+      </div>
+    </div>
+    
+    <div class="div2">
+      <div>
+        <ul class='slider'>
+          <li class="item" style="background-image: url('https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg')">
+            <button class="item-button play-button" onclick="playSound('audio1',this)">
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="item-button pause-button" onclick="pauseSound('audio1',this)">
+              <i class="fas fa-pause"></i>
+            </button>
+            <div class="content">
+              <h2 class="title">"Lossless Youths"</h2>
+              <p class="description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore.
+              </p>
+              <button class="read-more-button">Read More</button>
+            </div>
+            <audio id="audio1" src="Tum Hi Ho (From Aashiqui 2).mp3"></audio>
+          </li>
+          <li class="item" style="background-image: url('https://i.redd.it/tc0aqpv92pn21.jpg')">
+            <button class="item-button play-button" onclick="playSound('audio2',this)">
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="item-button pause-button" onclick="pauseSound('audio2',this)">
+              <i class="fas fa-pause"></i>
+            </button>
+            <div class="content">
+              <h2 class="title">"Estrange Bond"</h2>
+              <p class="description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore.
+              </p>
+              <button class="read-more-button">Read More</button>
+            </div>
+            <audio id="audio2" src="Chaiyya Chaiyya.mp3"></audio>
+          </li>
+          <li class="item" style="background-image: url('https://wharferj.files.wordpress.com/2015/11/bio_north.jpg')">
+            <button class="item-button play-button" onclick="playSound('audio3',this)">
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="item-button pause-button" onclick="pauseSound('audio3',this)">
+              <i class="fas fa-pause"></i>
+            </button>
+            <div class="content">
+              <h2 class="title">"The Gate Keeper"</h2>
+              <p class="description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore.
+              </p>
+              <button class="read-more-button">Read More</button>
+            </div>
+            <audio id="audio3" src="Tum Mile_192(PagalWorld.com.sb).mp3"></audio>
+          </li>
+          <li class="item" style="background-image: url('https://images7.alphacoders.com/878/878663.jpg')">
+            <button class="item-button play-button" onclick="playSound('audio4',this)">
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="item-button pause-button" onclick="pauseSound('audio4',this)">
+              <i class="fas fa-pause"></i>
+            </button>
+            <div class="content">
+              <h2 class="title">"Last Trace Of Us"</h2>
+              <p class="description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore.
+              </p>
+              <button class="read-more-button">Read More</button>
+            </div>
+            <audio id="audio4" src="Kabira.mp3"></audio>
+          </li>
+          <li class="item" style="background-image: url('https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg')">
+            <button class="item-button play-button" onclick="playSound('audio5',this)">
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="item-button pause-button" onclick="pauseSound('audio5',this)">
+              <i class="fas fa-pause"></i>
+            </button>
+            <div class="content">
+              <h2 class="title">"Urban Decay"</h2>
+              <p class="description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore.
+              </p>
+              <button class="read-more-button">Read More</button>
+            </div>
+            <audio id="audio5" src="Pehla Nasha (From Jo Jeeta Wohi Sikandar).mp3"></audio>
+          </li>
+          <li class="item" style="background-image: url('https://da.se/app/uploads/2015/09/simon-december1994.jpg')">
+            <button class="item-button play-button" onclick="playSound('audio6',this)">
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="item-button pause-button" onclick="pauseSound('audio6',this)">
+              <i class="fas fa-pause"></i>
+            </button>
+            <div class="content">
+              <h2 class="title">"The Migration"</h2>
+              <p class="description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore.
+              </p>
+              <button class="read-more-button">Read More</button>
+            </div>
+            <audio id="audio6" src="Tera Ban Jaunga (From Kabir Singh).mp3"></audio>
+          </li>
+        </ul>
+      </div>
+      <nav class='nav'>
+        <button class='btn prev'><i class="fas fa-chevron-left"></i></button>
+        <button class='btn next'><i class="fas fa-chevron-right"></i></button>
+      </nav>
+    </div>
+    
+    <div class="div3"> 
+      <div class="recommended-songs">
+        <h2>Recently Played</h2>
+        <div class="song">
+          <img src="music-icon.png" alt="Song 1" class="song-icon">
+          <p class="song-name">Bohemian Rhapsody</p>
+        </div>
+        <div class="song">
+          <img src="music-icon.png" alt="Song 2" class="song-icon">
+          <p class="song-name">Blinding Lights</p>
+        </div>
+        <div class="song">
+          <img src="music-icon.png" alt="Song 3" class="song-icon">
+          <p class="song-name">Imagine</p>
+        </div>
+        <div class="song">
+          <img src="music-icon.png" alt="Song 4" class="song-icon">
+          <p class="song-name">Shape of You</p>
+        </div>
+        <div class="song">
+          <img src="music-icon.png" alt="Song 5" class="song-icon">
+          <p class="song-name">Smells Like Teen Spirit</p>
+        </div>
+        <div class="song">
+          <img src="music-icon.png" alt="Song 6" class="song-icon">
+          <p class="song-name">Rolling in the Deep</p>
+        </div>
+        <div class="song">
+          <img src="music-icon.png" alt="Song 7" class="song-icon">
+          <p class="song-name">Someone Like You</p>
+        </div>
+        <div class="song">
+          <img src="music-icon.png" alt="Song 8" class="song-icon">
+          <p class="song-name">Hotel California</p>
+        </div>
+      </div>
+      
+      <div class="tags">
+        <div class="small-container">
+          <span class="icon">⭐<span class="name">POP</span></span>
+        </div>
+        <div class="small-container">
+          <span class="icon">❤️<span class="name">BASS</span></span>
+        </div>
+        <div class="small-container">
+          <span class="icon">🌟<span class="name">CLASSIC</span></span>
+        </div>
+        <div class="small-container">
+          <span class="icon">🔥<span class="name">MELODY</span></span>
+        </div>
+        <div class="small-container">
+          <span class="icon">🌈<span class="name">PARTY</span></span>
+        </div>
+        <div class="small-container">
+          <span class="icon">💧<span class="name">INDIE</span></span>
+        </div>
+        <div class="small-container">
+          <span class="icon">🎵<span class="name">JAZZ</span></span>
+        </div>
+        <div class="small-container">
+          <span class="icon">🎸<span class="name">ROCK</span></span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="albums-container">
+      <h2>Recommended Albums</h2>
+      <div class="albums">
+        <div class="album-item">
+          <div class="album-image" style="background-image: url('album1.jpg');"></div>
+          <div class="album-name">Michael Jackson</div>
+        </div>
+        <div class="album-item">
+          <div class="album-image" style="background-image: url('album2.jpg');"></div>
+          <div class="album-name">The Beatles</div>
+        </div>
+        <div class="album-item">
+          <div class="album-image" style="background-image: url('album3.jpg');"></div>
+          <div class="album-name">Pink Floyd</div>
+        </div>
+        <div class="album-item">
+          <div class="album-image" style="background-image: url('album4.jpg');"></div>
+          <div class="album-name">AC/DC</div>
+        </div>
+        <div class="album-item">
+          <div class="album-image" style="background-image: url('album5.jpg');"></div>
+          <div class="album-name">Beyoncé</div>
+        </div>
+        <div class="album-item">
+          <div class="album-image" style="background-image: url('album6.jpg');"></div>
+          <div class="album-name">Fleetwood Mac</div>
+        </div>
+        <div class="album-item">
+          <div class="album-image" style="background-image: url('album7.jpg');"></div>
+          <div class="album-name">Kendrick Lamar</div>
+        </div>
+        <div class="album-item">
+          <div class="album-image" style="background-image: url('album8.jpg');"></div>
+          <div class="album-name">Nirvana</div>
+        </div>
+        <div class="album-item">
+          <div class="album-image" style="background-image: url('album9.jpg');"></div>
+          <div class="album-name">Adele</div>
+        </div>
+        <div class="album-item">
+          <div class="album-image" style="background-image: url('album10.jpg');"></div>
+          <div class="album-name">Queen</div>
+        </div>
+      </div>
+      <div class="more-albums">
+        <button id="show-more"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+   
+  <h2 class="section-title">Musical Movies</h2>
+  <div class="flex-container">
+    <div class="flexitem">
+      <img src="lala.jpeg" alt="pic1" class="pic">
+      <p class="name">La La Land (2016)</p>
+    </div>
+    <div class="flexitem">
+      <img src="a star.jpeg" alt="pic 2" class="pic">
+      <p class="name">A Star Is Born (2018)</p>
+    </div>
+    <div class="flexitem">
+      <img src="the souund.jpeg" alt="pic3" class="pic">
+      <p class="name">The Sound of Music (1965)</p>
+    </div>
+    <div class="flexitem">
+      <img src="whiplash.jpeg" alt="pic4" class="pic">
+      <p class="name">Whiplash (2014)</p>
+    </div>
+    <div class="flexitem">
+      <img src="bohe.jpeg" alt="pic5" class="pic">
+      <p class="name">Bohemian Rhapsody (2018)</p>
+    </div>
+    <div class="flexitem">
+      <img src="rock.jpeg" alt="pic6" class="pic">
+      <p class="name">Rocketman (2019)</p>
+    </div>
+    <div class="flexitem">
+      <img src="singin.jpeg" alt="pic7" class="pic">
+      <p class="name">Singin' in the Rain (1952)</p>
+    </div>
+    <div class="flexitem">
+      <img src="inside.jpeg" alt="pic8" class="pic">
+      <p class="name">Inside Llewyn Davis (2013)</p>
+    </div>
+    <div class="flexitem">
+      <img src="8.jpeg" alt="pic9" class="pic">
+      <p class="name">8 Mile (2002)</p>
+    </div>
+    <div class="flexitem">
+      <img src="once1.jpeg" alt="pic10" class="pic">
+      <p class="name">Once (2007)</p>
+    </div>
+    <div class="flexitem">
+      <img src="the greatest.jpeg" alt="pic11" class="pic">
+      <p class="name">The Greatest Showman (2017)</p>
+    </div>
+    <div class="flexitem">
+      <img src="amadeus.jpeg" alt="pic12" class="pic">
+      <p class="name">Amadeus (1984)</p>
+    </div>
+  </div>
+
+  <footer class="footer-container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <i class="fas fa-music"></i> MELODY PULSE
+      </div>
+      <div class="footer-links">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="social-media">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <p>&copy; 2025 MELODY PULSE - All rights reserved.</p>
+  </footer>
+  
+  <script src="script.js"></script>
+</body>
+</html>

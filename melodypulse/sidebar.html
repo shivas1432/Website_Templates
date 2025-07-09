@@ -1,0 +1,138 @@
+<div class="slidebar">
+        <div id="slider">
+            <div id="slides">
+                <div class="slide"><img src="pahlenasha.jpeg" alt="">
+                    <audio class="audio" src="Pehla Nasha (From Jo Jeeta Wohi Sikandar).mp3"></audio>
+                </div>
+                <div class="slide"><img src="kabira.jpeg" alt="">
+                
+                    <audio class="audio" src="Kabira.mp3"></audio>
+                </div>
+                <div class="slide"><img src="chiaya chiya.jpeg" alt=""> 
+                    <audio class="audio" src="Chaiyya Chaiyya.mp3"></audio>
+                </div>
+                <div class="slide"><img src="tulasi kar.webp" alt="">
+                
+                    <audio class="audio" src="Tera Ban Jaunga (From Kabir Singh).mp3"></audio>
+                
+                </div>
+                <div class="slide"><img src="pritham.jpeg" alt="">
+                     <audio class="audio" src="Tum Mile_192(PagalWorld.com.sb).mp3"></audio>
+                </div>
+                <div class="slide"><img src="tumhiho.webp" alt="">
+                     <audio class="audio" src="Tum Hi Ho (From Aashiqui 2).mp3"></audio>
+                </div>
+                <div class="slide"><img src="mickel.jpeg" alt="">
+                    <audio class="audio" src="Tum Mile_192(PagalWorld.com.sb).mp3"></audio>
+                </div>
+            </div>
+            <button class="arrow left-arrow">&#10094;</button>
+            <button class="arrow right-arrow">&#10095;</button>
+
+        </div>
+        <div class="music-control">
+            <img src="https://example.com/path-to-your-music-icon.png" alt="play music" id="music-icon">
+          
+        </div>
+
+        // scripts.js
+
+let currentIndex = 0;
+const slides = document.querySelector('#slides');
+const slideCount = document.querySelectorAll('.slide').length;
+const audios = document.querySelectorAll('.audio');
+
+document.querySelector('.left-arrow').addEventListener('click', () => {
+    changeSlide((currentIndex > 0) ? currentIndex - 1 : slideCount - 1);
+});
+
+document.querySelector('.right-arrow').addEventListener('click', () => {
+    changeSlide((currentIndex < slideCount - 1) ? currentIndex + 1 : 0);
+});
+
+function changeSlide(index) {
+    currentIndex = index;
+    const offset = -currentIndex * 100;
+    slides.style.transform = `translateX(${offset}%)`;
+    playAudioForCurrentSlide();
+}
+
+function playAudioForCurrentSlide() {
+    // Pause all audios
+    audios.forEach(audio => audio.pause());
+    // Play the audio for the current slide
+    audios[currentIndex].play();
+}
+
+// Initial setup: play audio for the first slide
+playAudioForCurrentSlide();
+
+.slidebar{
+    grid-area: 1 / 2 / 3 / 5;
+background-color: rgb(236, 244, 242);
+width: 100%;
+height: 100%;
+position: relative;
+}
+#slider{
+   position: relative;
+   height: 100%;
+}
+#slides {
+   display: flex;
+   transition: transform 0.5s ease-in-out; /* Corrected here */
+   object-fit: cover;
+  
+  
+}
+
+.slide{
+ min-width:100%;
+   box-sizing: border-box;
+   position: relative;
+   align-items: center;
+   justify-content: center;
+   display: flex;
+   margin-top: 40px;
+   height: 100%;
+  
+}
+.slide img{
+   background-color: black;
+  height: auto;
+  object-fit:contain;
+  display: block;
+}
+.arrow{
+   position: absolute;
+   top: 50%;
+   background-color: rgba(0, 0, 0, 0.5);
+   color: white;
+   border: none;
+   padding: 10px;
+   cursor: pointer;
+   font-size: 24px;
+   z-index: 10;
+}
+.left-arrow{
+   left:10px;
+}
+.right-arrow{
+   right:10px;
+}
+.music-control{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 20px;
+}
+.music-control img {
+   width: 50px;
+   cursor: pointer;
+   opacity: 0.7; /* Adjust opacity to make it blend with the background */
+   transition: opacity 0.3s ease; /* Smooth transition on hover */
+}
+
+.music-control img:hover {
+   opacity: 1; /* Full opacity on hover */
+}

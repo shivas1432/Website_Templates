@@ -1,0 +1,252 @@
+
+
+:root {
+    --primary: #625BFE;
+    --text: #0F192D;
+    --text-gray: #5A678C;
+    --gray: #c0bcff;
+    --error: #E3452F;
+}
+
+/* Basic reset */
+* {
+    box-sizing: border-box;
+}
+.main-container {
+  background-image: url("solar\ bg.jpg");
+  background-size: cover;
+margin: 0;
+padding: 0;
+}
+
+/* Header styling */
+header {
+    position:relative;
+    height: 100%;
+    padding: 0 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+   
+}
+
+/* Container to align logo and navigation items */
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Space between logo and navigation items */
+    align-items: center;
+    width: 100%;
+}
+
+/* Logo styling */
+.logo img {
+    width: 100px;
+    height: 90px;
+}
+
+/* Navigation group styling */
+.navigation__group {
+    display: flex;
+    align-items:start; 
+   gap:20px;/* Align items vertically center */
+     /* Space between links and icons/profile */
+}
+
+/* Navigation links styling */
+.nav-links a {
+    color: #f7f7f7;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    padding: 10px 15px;
+  
+}
+
+.nav-links {
+    display: flex;
+    gap: 16px;
+    margin-right: 50px;
+}
+
+.nav-links h4 {
+    color: rgba(33, 81, 8, 0.988);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for 3D effect */
+    transition: transform 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.nav-links h4:hover {
+    transform: translateY(-4px); /* Lift effect on hover */
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+
+/* Icons styling */
+.icons {
+    display: flex;
+    gap: 16px; /* Space between icons */
+}
+
+.icons .icon {
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    margin-top: 20px;
+    transition: all 0.2s ease-in-out;
+}
+.icons .profile{
+   margin-top: 10px;
+}
+
+.icons .icon:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) { /* Adjust the breakpoint as needed */
+    .header-container {
+      /* Stack items vertically */
+        align-items: flex-start;
+         /* Align items to the start */
+    }
+
+    .navigation__group {
+        flex-direction: column; /* Stack navigation items vertically */
+        align-items: flex-start; /* Align items to the start */
+        gap: 5px; /* Reduce space between items */
+    }
+
+    .nav-links a h4 {
+        font-size: 10px;
+         /* Adjust font size for smaller screens */
+    }
+    .icons{
+        margin-top: 10px;
+       
+    }
+    .logo img {
+        width: 40px;
+        height: 60px;
+    }
+}
+
+
+.user-name {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+    color: var(--text);
+}
+
+.profile {
+    display: block;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid #f7f7f7;
+    filter: drop-shadow(-20px 0 10px rgba(0, 0, 0, 0.1));
+}
+
+.profile:hover {
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.email {
+    color: var(--text-gray);
+}
+
+.dropdown__wrapper {
+    width: 240px;
+    top: 88px;
+    right: 16px;
+    position: absolute;
+    border-radius: 8px;
+    border: 1px solid var(--text-gray);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 15px;
+    background-color: #ebf3ec;
+    animation: fadeOutAnimation ease-in-out 0.3s forwards;
+}
+
+.dropdown__wrapper--fade-in {
+    animation: fadeInAnimation ease-in-out 0.3s forwards;
+}
+
+.none {
+    display: none;
+}
+
+.hide {
+    opacity: 0;
+    visibility: hidden;
+    animation: fadeOutAnimation ease-in-out 0.3s forwards;
+}
+
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+        width: 160px;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+        width: 240px;
+    }
+}
+
+@keyframes fadeOutAnimation {
+    0% {
+        opacity: 1;
+        width: 240px;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        width: 160px;
+        visibility: hidden;
+    }
+}
+
+.dropdown__group {
+    padding: 12px;
+}
+
+.divider {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+nav > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    gap: 4px;
+}
+
+nav > ul > li {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding-left: 8px;
+    width: 100%;
+}
+
+nav > ul > li > img {
+    height: 24px;
+    width: 24px;
+}
+
+nav > ul > li:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

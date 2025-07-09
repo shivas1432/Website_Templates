@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Movie Website</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f1117;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0f1117;
+            border-bottom: 1px solid #1a1c25;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 16px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 24px;
+            margin-right: 32px;
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar {
+            background-color: #1a1c25;
+            border-radius: 4px;
+            padding: 6px 12px;
+            width: 240px;
+            margin: 0 16px;
+            border: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .add-button {
+            background-color: #3b82f6;
+            padding: 6px 12px;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .add-button:hover {
+            background-color: #2563eb;
+        }
+
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 20px 0;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 48px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-section {
+                flex-direction: row;
+            }
+        }
+
+        .hero-info {
+            flex: 7;
+            z-index: 10;
+            padding-top: 24px;
+        }
+
+        .hero-media {
+            flex: 5;
+            position: relative;
+        }
+
+        .release-info {
+            display: flex;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .release-info span {
+            margin: 0 8px;
+        }
+
+        .playtime {
+            display: flex;
+            align-items: center;
+        }
+
+        .clock-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+        }
+
+        .movie-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            animation: slideInFromLeft 0.8s ease-out;
+        }
+
+        .rating-badges {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .badge {
+            background-color: #059669;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .rank {
+            display: flex;
+            align-items: center;
+            color: #94a3b8;
+        }
+
+        .rank-number {
+            color: #059669;
+            margin-right: 4px;
+        }
+
+        .rating-bars {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .rating-bar {
+            height: 8px;
+            border-radius: 4px;
+        }
+
+        .rating-bar.green {
+            background-color: #15803d;
+        }
+
+        .rating-bar.yellow {
+            background-color: #ca8a04;
+        }
+
+        .rating-bar.orange {
+            background-color: #c2410c;
+        }
+
+        .rating-bar.red {
+            background-color: #b91c1c;
+        }
+
+        .rating-stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .rating-stat {
+            display: flex;
+            align-items: center;
+        }
+
+        .star-icon {
+            color: #facc15;
+            margin-right: 4px;
+        }
+
+        .rating-percentage {
+            color: #94a3b8;
+            margin-left: 4px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .action-button {
+            background-color: #1a1c25;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .action-button:hover {
+            background-color: #292e3d;
+        }
+
+        .action-button svg {
+            margin-right: 8px;
+        }
+
+        .friends-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .friend-avatars {
+            display: flex;
+            margin-right: 12px;
+        }
+
+        .friend-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #374151;
+            border: 2px solid #0f1117;
+            margin-left: -8px;
+        }
+
+        .friend-avatar:first-child {
+            margin-left: 0;
+        }
+
+        .friends-text {
+            font-size: 14px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+        }
+
+        .friends-count {
+            font-size: 12px;
+            margin-left: 8px;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .media-item {
+            position: relative;
+            height: 140px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .media-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .media-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .media-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .media-item:hover .media-overlay {
+            opacity: 1;
+        }
+
+        .play-button-small {
+            position: absolute;
+            top: 0;
+            right: 16px;
+            width: 64px;
+            height: 64px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            cursor: pointer;
+            transition: border 0.3s;
+        }
+
+        .play-button-small:hover {
+            border: 2px solid white;
+        }
+
+        .view-all {
+            background-color: #1a1c25;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 140px;
+            border-radius: 4px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .view-all-icon {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .section-count {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .about-text {
+            color: #94a3b8;
+            margin-bottom: 24px;
+            max-width: 48rem;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: #3b82f6;
+            font-size: 14px;
+            margin-top: 16px;
+            display: inline-block;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .info-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .info-label {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .info-tags {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .info-tag {
+            background-color: #1a1c25;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .movie-link {
+            color: #3b82f6;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .external-link-icon {
+            margin-left: 4px;
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .movie-card {
+            background-color: #1a1c25;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-image {
+            position: relative;
+            height: 128px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .movie-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .movie-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .collection-card {
+            background-color: #1a1c25;
+            border-radius: 4px;
+            padding: 12px;
+        }
+
+        .collection-title {
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .collection-thumbnails {
+            display: flex;
+        }
+
+        .collection-thumbnail {
+            width: 64px;
+            height: 64px;
+            background-color: #2d3748;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+
+        .collection-count {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .video-item {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 160px;
+        }
+
+        .video-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .video-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .video-item:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .video-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+        }
+
+        .video-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .video-meta {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* Cast Carousel */
+        .carousel {
+            position: relative;
+            padding: 0 32px;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: hidden;
+            gap: 24px;
+            scroll-behavior: smooth;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            background-color: #1a1c25;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .carousel-arrow.left {
+            left: 0;
+        }
+
+        .carousel-arrow.right {
+            right: 0;
+        }
+
+        .cast-item {
+            flex: 0 0 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cast-avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .cast-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cast-name {
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .cast-role {
+            color: #94a3b8;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .known-for {
+            color: #6b7280;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .known-for-item {
+            color: #94a3b8;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        .view-all-link {
+            color: #94a3b8;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 12px;
+            transition: color 0.3s;
+        }
+
+        .view-all-link:hover {
+            color: white;
+        }
+
+        .chevron-right {
+            margin-left: 4px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .slide-in {
+            animation: slideInFromLeft 0.5s ease-out;
+        }
+
+        /* Top Edge Animation */
+        .top-edge-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #059669, #ca8a04, #b91c1c);
+            background-size: 300% 100%;
+            z-index: 100;
+            animation: gradientFlow 3s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Edge Animation -->
+    <div class="top-edge-animation"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="left-section">
+                <div class="logo">SHIVSTUDIO</div>
+                <input type="text" class="search-bar" placeholder="SEARCH">
+                <nav class="nav-links">
+                    <a href="#">MOVIES</a>
+                    <a href="#">MY LIBRARY</a>
+                    <a href="#">ACTIVITY</a>
+                </nav>
+            </div>
+            <div class="right-section">
+                <button class="add-button">+ ADD</button>
+                <div class="profile-icon">A</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-info">
+                <div class="release-info">
+                    <span>DEC 18, 2009</span>
+                    <span>•</span>
+                    <span class="playtime">
+                        <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        PLAYTIME: 162 MINUTES
+                    </span>
+                </div>
+                <h1 class="movie-title">Avatar</h1>
+                <div class="rating-badges">
+                    <div class="badge">Exceptional</div>
+                    <div class="rank">
+                        <span class="rank-number">#</span>
+                        <span>94</span>
+                        <span style="color: #059669; margin-left: 4px;">↑</span>
+                    </div>
+                    <div class="rank">
+                        <span style="color: #6b7280; margin-right: 4px;">#</span>
+                        <span>829</span>
+                    </div>
+                </div>
+
+                <div class="rating-bars">
+                    <div class="rating-bar green"></div>
+                    <div class="rating-bar yellow"></div>
+                    <div class="rating-bar orange"></div>
+                    <div class="rating-bar red"></div>
+                </div>
+
+                <div class="rating-stats">
+                    <div class="rating-stat">
+                        <svg class="star-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                        </svg>
+                        <span>Exceptional</span>
+                        <span class="rating-percentage">85%</span>
+                    </div>
+                    <div class="rating-stat">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>Recommended</span>
+                        <span class="rating-percentage">⭐</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add to my watchlist
+                    </button>
+                    <button class="action-button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add to collection
+                    </button>
+                </div>
+
+                <div class="friends-section">
+                    <div class="friend-avatars">
+                        <div class="friend-avatar"></div>
+                        <div class="friend-avatar"></div>
+                        <div class="friend-avatar"></div>
+                    </div>
+                    <div class="friends-text">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Discuss with friends
+                        <span class="friends-count">73 people watched this movie</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-media">
+                <div class="media-grid">
+                    <div class="media-item">
+                        <img src="av1.jpg" alt="Avatar poster">
+                        <div class="media-overlay">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="media-item">
+                        <img src="av2.webp" alt="Avatar scene">
+                        <div class="media-overlay">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="media-item">
+                        <img src="av3.avif" alt="Avatar scene">
+                        <div class="media-overlay">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="view-all">
+                       
+                        VIEW ALL
+                        <svg class="view-all-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="play-button-small">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section">
+            <h2 class="section-title">About</h2>
+            <div class="about-text">
+                <p>On the lush alien world of Pandora live the Na'vi, beings who appear primitive but are highly evolved. Because the planet's environment is poisonous, human/Na'vi hybrids, called Avatars, must link to human minds to allow for free movement on Pandora. Jake Sully, a paralyzed former Marine, becomes mobile again through one such Avatar and falls in love with a Na'vi woman. As a bond with her grows, he is drawn into a battle for the survival of her world.</p>
+                <a href="#" class="read-more">Read more...</a>
+            </div>
+
+            <div class="info-grid">
+                <div>
+                    <span class="info-label">PG, 20th Century Studios</span>
+                    <div class="info-tags">
+                        <span class="info-tag">Sci-Fi</span>
+                        <span class="info-tag">Action</span>
+                        <span class="info-tag">Adventure</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="info-label">Dec 18, 2009</span>
+                    <div class="info-tags">
+                        <span class="info-tag">PG-13</span>
+                        <span class="info-tag">IMAX</span>
+                        <span class="info-tag">3D</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="info-label">James Cameron</span>
+                    <div class="info-tags">
+                        <span class="info-tag">Director</span>
+                        <span class="info-tag">Writer</span>
+                        <span class="info-tag">Producer</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://www.avatar.com" class="movie-link">
+                https://www.avatar.com
+                <svg class="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </a>
+        </section>
+
+        <!-- Similar Movies Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Similar movies</h2>
+                <span class="section-count">12 movies</span>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="movie-card">
+                    <div class="card-image">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYjg4ZjUzMzMtYzlmYi00YTcwLTlkOWUtYWFmY2RhNjliODQzXkEyXkFqcGdeQXVyNTUyMzE4Mzg@._V1_.jpg" alt="Terminator 2">
+                        <div class="card-overlay">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Terminator 2</h3>
+                        <div class="card-info">
+                            <span>James Cameron</span>
+                            <span>93%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <div class="card-image">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg" alt="Avengers: Endgame">
+                        <div class="card-overlay">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Avengers: Endgame</h3>
+                        <div class="card-info">
+                            <span>Marvel Studios</span>
+                            <span>90%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <div class="card-image">
+                        <img src="https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg" alt="Lord of the Rings">
+                        <div class="card-overlay">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Lord of the Rings</h3>
+                        <div class="card-info">
+                            <span>New Line Cinema</span>
+                            <span>95%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" class="view-all-link">
+                VIEW ALL
+                <svg class="chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </a>
+        </section>
+
+        <!-- Collections Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">In collections</h2>
+                <span class="section-count">16 collections</span>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="collection-card">
+                    <h3 class="collection-title">Immersive worlds</h3>
+                    <div class="collection-thumbnails">
+                        <div class="collection-thumbnail"><svg  xmlns="http://www.w3.org/2000/svg"  width="54"  height="54"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-badge-hd"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M14 9v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /><path d="M7 15v-6" /><path d="M10 15v-6" /><path d="M7 12h3" /></svg></div>
+                        <div class="collection-thumbnail"><svg  xmlns="http://www.w3.org/2000/svg"  width="54"  height="54"   viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-badge-hd"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M14 9v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /><path d="M7 15v-6" /><path d="M10 15v-6" /><path d="M7 12h3" /></svg></div>
+                    </div>
+                    <div class="collection-count">63 MOVIES</div>
+                </div>
+                
+                <div class="collection-card">
+                    <h3 class="collection-title">Wow, that ending!</h3>
+                    <div class="collection-thumbnails">
+                        <div class="collection-thumbnail"><svg  xmlns="http://www.w3.org/2000/svg"  width="54"  height="54"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-badge-hd"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M14 9v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /><path d="M7 15v-6" /><path d="M10 15v-6" /><path d="M7 12h3" /></svg></div>
+                        <div class="collection-thumbnail"><svg  xmlns="http://www.w3.org/2000/svg"  width="54"  height="54"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-badge-hd"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M14 9v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /><path d="M7 15v-6" /><path d="M10 15v-6" /><path d="M7 12h3" /></svg></div>
+                    </div>
+                    <div class="collection-count">42 MOVIES</div>
+                </div>
+                
+                <div class="collection-card">
+                    <h3 class="collection-title">Sci-fi classics</h3>
+                    <div class="collection-thumbnails">
+                        <div class="collection-thumbnail"><svg  xmlns="http://www.w3.org/2000/svg"  width="54"  height="54"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-badge-hd"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M14 9v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /><path d="M7 15v-6" /><path d="M10 15v-6" /><path d="M7 12h3" /></svg></div>
+                        <div class="collection-thumbnail"><svg  xmlns="http://www.w3.org/2000/svg"  width="54"  height="54"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-badge-hd"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M14 9v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /><path d="M7 15v-6" /><path d="M10 15v-6" /><path d="M7 12h3" /></svg></div>
+                    </div>
+                    <div class="collection-count">87 MOVIES</div>
+                </div>
+            </div>
+            
+            <a href="#" class="view-all-link">
+                VIEW ALL
+                <svg class="chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </a>
+        </section>
+
+        <!-- Videos Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Videos</h2>
+                <span class="section-count">25+ videos</span>
+            </div>
+            
+            <div class="video-grid">
+                <div class="video-item">
+                    <img src="https://i.ytimg.com/vi/5PSNL1qE6VY/maxresdefault.jpg" alt="Avatar Official Trailer">
+                    <div class="video-overlay">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Avatar - Official Trailer</h3>
+                        <div class="video-meta">20 Dec 2009 • 20th Century Studios</div>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <img src="av3.avif" alt="Avatar - Behind the Scenes">
+                    <div class="video-overlay">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Avatar - Behind the Scenes</h3>
+                        <div class="video-meta">15 Jan 2010 • 20th Century Studios</div>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" class="view-all-link">
+                VIEW ALL VIDEOS
+                <svg class="chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </a>
+        </section>
+
+        <!-- Cast & Crew Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Cast & Crew</h2>
+                <span class="section-count">24 members</span>
+            </div>
+            
+            <div class="carousel">
+                <div class="carousel-arrow left" onclick="scrollCarousel('left')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </div>
+                
+                <div class="carousel-container" id="castCarousel">
+                    <div class="cast-item">
+                        <div class="cast-avatar">
+                            <img src="jc.webp" alt="James Cameron">
+                        </div>
+                        <h3 class="cast-name">James Cameron</h3>
+                        <p class="cast-role">Director, Writer</p>
+                        <p class="known-for">Known for</p>
+                        <div class="known-for-item">Titanic</div>
+                        <div class="known-for-item">Terminator</div>
+                        <div class="known-for-item">Aliens</div>
+                    </div>
+                    
+                    <div class="cast-item">
+                        <div class="cast-avatar">
+                            <img src="sw.webp" alt="Sam Worthington">
+                        </div>
+                        <h3 class="cast-name">Sam Worthington</h3>
+                        <p class="cast-role">Jake Sully</p>
+                        <p class="known-for">Known for</p>
+                        <div class="known-for-item">Terminator Salvation</div>
+                        <div class="known-for-item">Clash of the Titans</div>
+                        <div class="known-for-item">Man on a Ledge</div>
+                    </div>
+                    
+                    <div class="cast-item">
+                        <div class="cast-avatar">
+                            <img src="zs.webp" alt="Zoe Saldana">
+                        </div>
+                        <h3 class="cast-name">Zoe Saldana</h3>
+                        <p class="cast-role">Neytiri</p>
+                        <p class="known-for">Known for</p>
+                        <div class="known-for-item">Guardians of the Galaxy</div>
+                        <div class="known-for-item">Star Trek</div>
+                        <div class="known-for-item">Avengers: Endgame</div>
+                    </div>
+                    
+                    <div class="cast-item">
+                        <div class="cast-avatar">
+                            <img src="sw1.webp" alt="Sigourney Weaver">
+                        </div>
+                        <h3 class="cast-name">Sigourney Weaver</h3>
+                        <p class="cast-role">Dr. Grace Augustine</p>
+                        <p class="known-for">Known for</p>
+                        <div class="known-for-item">Alien</div>
+                        <div class="known-for-item">Ghostbusters</div>
+                        <div class="known-for-item">The Village</div>
+                    </div>
+                    
+                    <div class="cast-item">
+                        <div class="cast-avatar">
+                            <img src="sl.webp" alt="Stephen Lang">
+                        </div>
+                        <h3 class="cast-name">Stephen Lang</h3>
+                        <p class="cast-role">Colonel Miles Quaritch</p>
+                        <p class="known-for">Known for</p>
+                        <div class="known-for-item">Don't Breathe</div>
+                        <div class="known-for-item">Avatar: The Way of Water</div>
+                        <div class="known-for-item">Tombstone</div>
+                    </div>
+                </div>
+                
+                <div class="carousel-arrow right" onclick="scrollCarousel('right')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </div>
+            
+            <a href="#" class="view-all-link">
+                VIEW ALL
+                <svg class="chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </a>
+        </section>
+    </div>
+
+    <script>
+        // Animation for elements as they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial page load animation
+            document.body.classList.add('fade-in');
+
+            // Get all elements that should be animated when scrolled into view
+            const animateItems = document.querySelectorAll('.section');
+            
+            // Create an Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Observe each element
+            animateItems.forEach(item => {
+                observer.observe(item);
+            });
+
+            // Apply animation to movie title
+            const movieTitle = document.querySelector('.movie-title');
+            setTimeout(() => {
+                movieTitle.classList.add('slide-in');
+            }, 500);
+        });
+
+        // Carousel functionality
+        function scrollCarousel(direction) {
+            const container = document.getElementById('castCarousel');
+            const scrollAmount = 200; // Adjust as needed
+            
+            if (direction === 'left') {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        // Smooth scrolling for view all links
+        document.querySelectorAll('.view-all-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = this.closest('.section').nextElementSibling;
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+       
+        document.querySelectorAll('.media-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.querySelector('img').style.transform = 'scale(1.1)';
+                this.querySelector('.media-overlay').style.opacity = '1';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.querySelector('img').style.transform = 'scale(1)';
+                this.querySelector('.media-overlay').style.opacity = '0';
+            });
+        });
+
+       
+        const playButton = document.querySelector('.play-button-small');
+        playButton.addEventListener('mouseenter', function() {
+            this.style.border = '2px solid white';
+        });
+        
+        playButton.addEventListener('mouseleave', function() {
+            this.style.border = 'none';
+        });
+
+     
+        const topEdge = document.querySelector('.top-edge-animation');
+        let hue = 0;
+        
+        setInterval(() => {
+            
+            hue = (hue + 1) % 360;
+            const color1 = `hsl(${hue}, 80%, 50%)`;
+            const color2 = `hsl(${(hue + 90) % 360}, 80%, 50%)`;
+            const color3 = `hsl(${(hue + 180) % 360}, 80%, 50%)`;
+            const color4 = `hsl(${(hue + 270) % 360}, 80%, 50%)`;
+            
+            topEdge.style.background = `linear-gradient(90deg, ${color1}, ${color2}, ${color3}, ${color4})`;
+            topEdge.style.backgroundSize = '300% 100%';
+        }, 100);
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your own resume with ease.">
+    <meta name="keywords" content="resume, professional, CV">
+    <meta name="creator" content="shivashanker">
+    <meta name="publisher" content="shiva">
+    <title>My Resume</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   
+
+<style>
+ 
+
+
+</style>
+</head>
+<body>
+    <header>
+        <h1>Create your  Resume</h1>
+    </header>
+    
+    <main class="container">
+        <section class="resume-section">
+            <h2>Professional Summary</h2>
+            <textarea class="form-control" placeholder="Enter your introduction"></textarea>
+        </section>
+
+        <section class="resume-section">
+            <h2>Personal Details</h2>
+            <form action="/submit-form" method="post">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <select id="title" class="form-control">
+                        <option value="miss">Miss</option>
+                        <option value="mr">Mr</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstname">Firstname</label>
+                    <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Enter your firstname">
+                </div>
+
+                <div class="form-group">
+                    <label for="middlename">Middle Name</label>
+                    <input type="text" id="middlename" name="middlename" class="form-control" placeholder="Enter your middle name">
+                </div>
+
+                <div class="form-group">
+                    <label for="surname">Surname</label>
+                    <input type="text" id="surname" name="surname" class="form-control" placeholder="Enter your surname">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" class="form-control" placeholder="Enter your address">
+                </div>
+
+                
+            </form>
+        </section>
+
+        <section class="resume-section">
+            <h2>Educational Details</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Study</th>
+                        <th>Designation 1</th>
+                        <th>Designation 2</th>
+                        <th>Designation 3</th>
+                        <th>Designation 4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Name of University</th>
+                        <td><input type="text" class="form-control" placeholder="Enter university name"></td>
+                        <td><input type="text" class="form-control" placeholder="Enter university name"></td>
+                        <td><input type="text" class="form-control" placeholder="Enter university name"></td>
+                        <td><input type="text" class="form-control" placeholder="Enter university name"></td>
+                    </tr>
+                    <tr>
+                        <th>Grade</th>
+                        <td><input type="text" class="form-control" placeholder="Enter grade"></td>
+                        <td><input type="text" class="form-control" placeholder="Enter grade"></td>
+                        <td><input type="text" class="form-control" placeholder="Enter grade"></td>
+                        <td><input type="text" class="form-control" placeholder="Enter grade"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="resume-section">
+            <p class="info-text">
+                For more details, fill out the form. 
+                <a href="https://www.myperfectcv.co.uk/build-cv/choose-template?uploadtest=true" target="_blank">Click here for more themes</a>
+            </p>
+            <button type="submit" class="btn btn-primary">Submit & Save</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='EDUCATIONAL.html'">Next Step</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container text-center">
+            <p><a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new" target="_blank">Help</a></p>
+            <p>&copy; 2024 MyWebsite. All rights reserved. <a href="mailto:shivashanker7337@gmail.com">Contact: shivashanker7337@gmail.com</a></p>
+        </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

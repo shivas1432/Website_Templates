@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery | Because Life can Always be Sweeter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Animation Banner */
+        .top-animation {
+            background: #f8f8f800;
+            height: 30px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 20px;
+        }
+
+        .language-selector {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .language-selector select {
+            border: none;
+            background: transparent;
+            color: #777;
+            font-size: 12px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .sprinkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #e7c064;
+            border-radius: 50%;
+            opacity: 0;
+            animation: fallingSprinkles 6s linear infinite;
+        }
+
+        .sprinkle:nth-child(1) {
+            left: 5%;
+            animation-delay: 0.5s;
+        }
+
+        .sprinkle:nth-child(2) {
+            left: 15%;
+            animation-delay: 1.5s;
+        }
+
+        .sprinkle:nth-child(3) {
+            left: 30%;
+            animation-delay: 0.7s;
+        }
+
+        .sprinkle:nth-child(4) {
+            left: 40%;
+            animation-delay: 1.2s;
+        }
+
+        .sprinkle:nth-child(5) {
+            left: 55%;
+            animation-delay: 0.3s;
+        }
+
+        .sprinkle:nth-child(6) {
+            left: 70%;
+            animation-delay: 1.8s;
+        }
+
+        .sprinkle:nth-child(7) {
+            left: 85%;
+            animation-delay: 0.9s;
+        }
+
+        .sprinkle:nth-child(8) {
+            left: 95%;
+            animation-delay: 2.1s;
+        }
+
+        @keyframes fallingSprinkles {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(30px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header */
+        header {
+           
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            flex: 2;
+        }
+
+        nav .left-nav, nav .right-nav {
+            display: flex;
+            list-style: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        nav .left-nav {
+            justify-content: flex-end;
+            margin-right: 80px;
+        }
+
+        nav .right-nav {
+            justify-content: flex-start;
+            margin-left: 80px;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #a67c52;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            
+            height: auto;
+            padding-bottom: 40px;
+        }
+
+        .hero-image {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-content h1 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 3.5rem;
+            color: #4a3c31;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            font-weight: normal;
+        }
+
+        .hero-content h2 {
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .hero-content p {
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .view-all {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            color: #666;
+            display: flex;
+            align-items: center;
+        }
+
+        .view-all span {
+            margin-right: 10px;
+        }
+
+        .view-all i {
+            font-size: 0.7rem;
+        }
+
+        /* Slider Pagination */
+        .slider-pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .slider-dot.active {
+            background: #a67c52;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: #4a3c31;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            padding: 0 30px;
+        }
+
+        .feature-icon {
+            margin-bottom: 20px;
+        }
+
+        .feature-icon img {
+            height: 45px;
+            opacity: 0.9;
+        }
+
+        .feature-title {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        /* History Section */
+        .history-section {
+            display: flex;
+            background: #f9f8f6;
+            padding: 0;
+        }
+
+        .history-image {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .history-image img {
+            max-width: 100%;
+        }
+
+        .history-content {
+            flex: 1;
+            padding: 60px 40px;
+        }
+
+        .history-title {
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            color: #4a3c31;
+            margin-bottom: 30px;
+        }
+
+        .history-text {
+            color: #777;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* News Section */
+        .news-section {
+            background: #f0eeea;
+            padding: 40px 0;
+        }
+
+        .news-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        .news-column {
+            padding: 0 15px;
+        }
+
+        .news-title {
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            color: #4a3c31;
+            margin-bottom: 20px;
+        }
+
+        .news-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .news-date {
+            background: #ddd;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            text-align: center;
+        }
+
+        .news-day {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            line-height: 1;
+        }
+
+        .news-month {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #777;
+        }
+
+        .news-text {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        .news-text a {
+            color: #a67c52;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #a67c52;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            transition: background 0.3s;
+        }
+
+        .social-icon:hover {
+            background: #4a3c31;
+        }
+
+        .newsletter-form {
+            margin-top: 20px;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-button {
+            background: #a67c52;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background: #4a3c31;
+        }
+
+        .newsletter-text {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #4a3c31;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 15px 0;
+            font-size: 0.8rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+        }
+
+        .footer-links a {
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .history-section {
+                flex-direction: column;
+            }
+
+            .news-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+            }
+
+            .hero-image {
+                padding: 20px;
+            }
+
+            .hero-content {
+                padding: 40px 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .features-section {
+                padding: 40px 20px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                margin-top: 10px;
+                justify-content: center;
+            }
+
+            .footer-links a {
+                margin: 0 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Animation Banner -->
+    <div class="top-animation">
+        <div class="sprinkle"></div>
+        <div class="sprinkle"></div>
+        <div class="sprinkle"></div>
+        <div class="sprinkle"></div>
+        <div class="sprinkle"></div>
+        <div class="sprinkle"></div>
+        <div class="sprinkle"></div>
+        <div class="sprinkle"></div>
+        <div class="language-selector">
+            Select Language <select id="languageSelector">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <nav>
+                <ul class="left-nav">
+                    <li><a href="#">ABOUT BAKERY</a></li>
+                    <li><a href="#">PRODUCTS</a></li>
+                </ul>
+            </nav>
+            <div class="logo">
+            
+                <h1>Bakery</h1>
+            </div>
+            
+            <nav>
+                <ul class="right-nav">
+                    <li><a href="#">LOCATIONS</a></li>
+                    <li><a href="#">FOOD SERVICE</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-image">
+            <img src="ts1.jpg" alt="Pistachio Cheesecake">
+        </div>
+        <div class="hero-content">
+            <h1>Because Life can<br>Always be Sweeter</h1>
+            <h2>NEW PISTACHIO CHEESECAKE</h2>
+            <p>A creamy pistachio cheesecake with a white chocolate topping topped with a light pistachio mousse and sprinkled with pistachios, on a cookie crumb base.</p>
+            <a href="#" class="view-all">
+                <span>VIEW ALL PRODUCTS</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Slider Pagination -->
+    <div class="slider-pagination">
+        <div class="slider-dot active"></div>
+        <div class="slider-dot"></div>
+        <div class="slider-dot"></div>
+        <div class="slider-dot"></div>
+        <div class="slider-dot"></div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cpath fill='%23fff' d='M10 10h30v10H10z'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' d='M15 25h20M10 15h30M20 10v-5M30 10v-5M10 20v20h30V20'/%3E%3C/svg%3E" alt="Shopping Basket">
+                    </div>
+                    <h3 class="feature-title">OUR HISTORY<br>A FAMILY BUSINESS</h3>
+                    <p class="feature-desc">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor mollis auctor.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' d='M15 35s-3-16 10-16c13 0 10 16 10 16M15 25h20'/%3E%3C/svg%3E" alt="Croissant">
+                    </div>
+                    <h3 class="feature-title">OUR PRODUCTS<br>BETTER INGREDIENTS</h3>
+                    <p class="feature-desc">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor mollis auctor.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Ccircle fill='none' stroke='%23fff' stroke-width='2' cx='25' cy='25' r='15'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' d='M25 10v-5M25 45v-5M10 25H5M45 25h-5M12 12l3 3M35 35l3 3M12 38l3-3M35 15l3-3'/%3E%3C/svg%3E" alt="Globe">
+                    </div>
+                    <h3 class="feature-title">OUR VALUES<br>100% FAIR TRADE</h3>
+                    <p class="feature-desc">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor mollis auctor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="history-section">
+        <div class="history-image">
+            <img src="ts2.jpg" alt="Vintage Bakery Photo">
+        </div>
+        <div class="history-content">
+            <h2 class="history-title">OVER 60 YEARS OF MIXING BATTER</h2>
+            <p class="history-text">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
+            <p class="history-text">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section">
+        <div class="container news-container">
+            <div class="news-column">
+                <h3 class="news-title">THE LATEST NEWS</h3>
+                <div class="news-item">
+                    <div class="news-date">
+                        <div class="news-day">24</div>
+                        <div class="news-month">MAY</div>
+                    </div>
+                    <div class="news-text">
+                        Maecenas gravida porttitor nunc, quis vehicla double dip super cool cum laude... <a href="#">Read More</a>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">
+                        <div class="news-day">24</div>
+                        <div class="news-month">MAY</div>
+                    </div>
+                    <div class="news-text">
+                        Maecenas posuere erat a natural diam eget risus varius blandit sit... <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="news-column">
+                <h3 class="news-title">CONNECT WITH US</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-pinterest"></i>
+                    </a>
+                </div>
+                <p class="news-text" style="margin-top: 15px;">
+                    Follow us to stay in the loop on what's new with Bindi.
+                </p>
+            </div>
+            <div class="news-column">
+                <h3 class="news-title">GET THE LATEST UPDATES</h3>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="e-mail address">
+                    <button type="submit" class="newsletter-button">SUBSCRIBE</button>
+                </form>
+                <p class="newsletter-text">
+                    Sign up for our newsletter for our latest news and updates.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="copyright">© 2023 SHIVASHANKER KANUGULA</div>
+            <div class="footer-links">
+                <a href="#">CONTACT US</a>
+                <a href="#">NEWS</a>
+                <a href="#">SITE MAP</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                aboutBindi: "ABOUT BINDI",
+                products: "PRODUCTS",
+                locations: "LOCATIONS",
+                foodService: "FOOD SERVICE",
+                becauseLife: "Because Life can",
+                alwaysBe: "Always be Sweeter",
+                newPistachio: "NEW PISTACHIO CHEESECAKE",
+                creamyDesc: "A creamy pistachio cheesecake with a white chocolate topping topped with a light pistachio mousse and sprinkled with pistachios, on a cookie crumb base.",
+                viewAll: "VIEW ALL PRODUCTS",
+                ourHistory: "OUR HISTORY",
+                familyBusiness: "A FAMILY BUSINESS",
+                ourProducts: "OUR PRODUCTS",
+                betterIngredients: "BETTER INGREDIENTS",
+                ourValues: "OUR VALUES",
+                fairTrade: "100% FAIR TRADE",
+                sixtyYears: "OVER 60 YEARS OF MIXING BATTER",
+                latestNews: "THE LATEST NEWS",
+                readMore: "Read More",
+                connectWithUs: "CONNECT WITH US",
+                followUs: "Follow us to stay in the loop on what's new with Bindi.",
+                getUpdates: "GET THE LATEST UPDATES",
+                subscribe: "SUBSCRIBE",
+                signUp: "Sign up for our newsletter for our latest news and updates.",
+                contactUs: "CONTACT US",
+                news: "NEWS",
+                siteMap: "SITE MAP"
+            },
+            es: {
+                aboutBindi: "SOBRE BINDI",
+                products: "PRODUCTOS",
+                locations: "UBICACIONES",
+                foodService: "SERVICIO DE ALIMENTOS",
+                becauseLife: "Porque la Vida",
+                alwaysBe: "Siempre puede ser más Dulce",
+                newPistachio: "NUEVO CHEESECAKE DE PISTACHO",
+                creamyDesc: "Un cremoso cheesecake de pistacho con cobertura de chocolate blanco, mousse ligero de pistacho y espolvoreado con pistachos, sobre una base de galleta.",
+                viewAll: "VER TODOS LOS PRODUCTOS",
+                ourHistory: "NUESTRA HISTORIA",
+                familyBusiness: "UN NEGOCIO FAMILIAR",
+                ourProducts: "NUESTROS PRODUCTOS",
+                betterIngredients: "MEJORES INGREDIENTES",
+                ourValues: "NUESTROS VALORES",
+                fairTrade: "100% COMERCIO JUSTO",
+                sixtyYears: "MÁS DE 60 AÑOS MEZCLANDO MASA",
+                latestNews: "ÚLTIMAS NOTICIAS",
+                readMore: "Leer Más",
+                connectWithUs: "CONÉCTATE CON NOSOTROS",
+                followUs: "Síguenos para estar al día de las novedades de Bindi.",
+                getUpdates: "RECIBE LAS ÚLTIMAS ACTUALIZACIONES",
+                subscribe: "SUSCRIBIRSE",
+                signUp: "Regístrate en nuestro boletín para recibir nuestras últimas noticias y actualizaciones.",
+                contactUs: "CONTÁCTANOS",
+                news: "NOTICIAS",
+                siteMap: "MAPA DEL SITIO"
+            },
+            fr: {
+                aboutBindi: "À PROPOS DE BINDI",
+                products: "PRODUITS",
+                locations: "EMPLACEMENTS",
+                foodService: "SERVICE ALIMENTAIRE",
+                becauseLife: "Parce que la Vie",
+                alwaysBe: "Peut Toujours être Plus Douce",
+                newPistachio: "NOUVEAU CHEESECAKE À LA PISTACHE",
+                creamyDesc: "Un onctueux cheesecake à la pistache avec une garniture au chocolat blanc, surmonté d'une légère mousse à la pistache et parsemé de pistaches, sur une base de biscuit émiettée.",
+                viewAll: "VOIR TOUS LES PRODUITS",
+                ourHistory: "NOTRE HISTOIRE",
+                familyBusiness: "UNE ENTREPRISE FAMILIALE",
+                ourProducts: "NOS PRODUITS",
+                betterIngredients: "MEILLEURS INGRÉDIENTS",
+                ourValues: "NOS VALEURS",
+                fairTrade: "100% COMMERCE ÉQUITABLE",
+                sixtyYears: "PLUS DE 60 ANS À MÉLANGER DE LA PÂTE",
+                latestNews: "DERNIÈRES NOUVELLES",
+                readMore: "Lire Plus",
+                connectWithUs: "CONNECTEZ-VOUS AVEC NOUS",
+                followUs: "Suivez-nous pour rester informé des nouveautés chez Bindi.",
+                getUpdates: "RECEVEZ LES DERNIÈRES MISES À JOUR",
+                subscribe: "S'ABONNER",
+                signUp: "Inscrivez-vous à notre newsletter pour recevoir nos dernières nouvelles et mises à jour.",
+                contactUs: "CONTACTEZ-NOUS",
+                news: "NOUVELLES",
+                siteMap: "PLAN DU SITE"
+            }
+        };
+
+        // Function to update page content based on selected language
+        function updateLanguage(lang) {
+            const t = translations[lang];
+            
+            // Update navigation
+            document.querySelectorAll('.left-nav li a')[0].textContent = t.aboutBindi;
+            document.querySelectorAll('.left-nav li a')[1].textContent = t.products;
+            document.querySelectorAll('.right-nav li a')[0].textContent = t.locations;
+            document.querySelectorAll('.right-nav li a')[1].textContent = t.foodService;
+            
+            // Update hero section
+            document.querySelector('.hero-content h1').innerHTML = t.becauseLife + '<br>' + t.alwaysBe;
+            document.querySelector('.hero-content h2').textContent = t.newPistachio;
+            document.querySelector('.hero-content p').textContent = t.creamyDesc;
+            document.querySelector('.view-all span').textContent = t.viewAll;
+            
+            // Update features section
+            const featureTitles = document.querySelectorAll('.feature-title');
+            featureTitles[0].innerHTML = t.ourHistory + '<br>' + t.familyBusiness;
+            featureTitles[1].innerHTML = t.ourProducts + '<br>' + t.betterIngredients;
+            featureTitles[2].innerHTML = t.ourValues + '<br>' + t.fairTrade;
+            
+            // Update history section
+            document.querySelector('.history-title').textContent = t.sixtyYears;
+            
+            // Update news section
+            document.querySelectorAll('.news-title')[0].textContent = t.latestNews;
+            document.querySelectorAll('.news-title')[1].textContent = t.connectWithUs;
+            document.querySelectorAll('.news-title')[2].textContent = t.getUpdates;
+            
+            document.querySelectorAll('.news-text a').forEach(link => {
+                link.textContent = t.readMore;
+            });
+            
+            document.querySelectorAll('.news-column')[1].querySelector('.news-text').textContent = t.followUs;
+            document.querySelector('.newsletter-button').textContent = t.subscribe;
+            document.querySelector('.newsletter-text').textContent = t.signUp;
+            
+            // Update footer
+            document.querySelectorAll('.footer-links a')[0].textContent = t.contactUs;
+            document.querySelectorAll('.footer-links a')[1].textContent = t.news;
+            document.querySelectorAll('.footer-links a')[2].textContent = t.siteMap;
+        }
+
+        // Language selector event listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageSelector = document.getElementById('languageSelector');
+            
+            languageSelector.addEventListener('change', function() {
+                updateLanguage(this.value);
+            });
+            
+            // Set initial language based on browser preference or default to English
+            const userLanguage = navigator.language || navigator.userLanguage;
+            let initialLang = 'en';
+            
+            if (userLanguage.startsWith('es')) {
+                initialLang = 'es';
+                languageSelector.value = 'es';
+            } else if (userLanguage.startsWith('fr')) {
+                initialLang = 'fr';
+                languageSelector.value = 'fr';
+            }
+            
+            // Apply initial language
+            updateLanguage(initialLang);
+            
+            // Slider functionality
+            const dots = document.querySelectorAll('.slider-dot');
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    // Remove active class from all dots
+                    dots.forEach(d => d.classList.remove('active'));
+                    
+                    // Add active class to clicked dot
+                    dot.classList.add('active');
+                    
+                    // Here you would normally change the slide
+                    // For this demo, we're just changing the active dot
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROHEALTH</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+ 
+
+                <div class="main-body-container">
+                  <div class="main-body">
+                    <div class="overview"> 
+                        <div class="overview-top">
+                            <div class="overview-tag">
+                                <h2>Patient Health</h2>
+                            </div>  
+                            <div class="flex-wrapper">
+                                <div class="single-chart" data-percent="30" data-color="#ff9f00">
+                                    <svg viewBox="0 0 36 36" class="circular-chart orange" >
+                                        <path class="circle-bg"
+                                            d="M18 2.0845
+                                              a 15.9155 15.9155 0 0 1 0 31.831
+                                              a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        />
+                                        <path class="circle"  id="dynamic-circle" stroke-dasharray="30, 100"
+                                            d="M18 2.0845
+                                              a 15.9155 15.9155 0 0 1 0 31.831
+                                              a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        />
+                                        <text x="18" y="20.35"  class="percentage-tag"></text>
+                                    </svg>
+                                </div>
+                                
+                                <div class="single-chart" data-percent="60" data-color="#4CC790">
+                                    <svg viewBox="0 0 36 36" class="circular-chart green">
+                                        <path class="circle-bg"
+                                            d="M18 2.0845
+                                              a 15.9155 15.9155 0 0 1 0 31.831
+                                              a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        />
+                                        <path class="circle" id="dynamic-circle1" stroke-dasharray="60, 100"
+                                            d="M18 2.0845
+                                              a 15.9155 15.9155 0 0 1 0 31.831
+                                              a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        />
+                                        <text x="18" y="20.35" class="percentage-tag1">60%</text>
+                                    </svg>
+                                </div>
+                        
+                                <div class="single-chart" data-percent="90" data-color="#3c9ee5">
+                                    <svg viewBox="0 0 36 36" class="circular-chart blue">
+                                        <path class="circle-bg"
+                                            d="M18 2.0845
+                                              a 15.9155 15.9155 0 0 1 0 31.831
+                                              a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        />
+                                        <path class="circle"  id="dynamic-circle2" stroke-dasharray="90, 100"
+                                            d="M18 2.0845
+                                              a 15.9155 15.9155 0 0 1 0 31.831
+                                              a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        />
+                                        <text x="18" y="20.35" class="percentage-tag2">90%</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-body"> 
+                            <video autoplay muted loop>
+                                <source src="vecteezy_anatomy-of-the-human-heart-in-medicine_32325668.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="overlay">
+                            <div class="top-left">
+                                <p id="name-tag">HEART BEAT</p> 
+                                <p class="percentage-tag" id="percentage"></p>
+                                <video id="video-tag"  autoplay loop muted>
+                                    <source src="reading.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="middle-right">
+                                <p id="name-tag">HEALTH CONDITION</p> 
+                                <p class="percentage-tag2" id="percentage">75%</p>
+                                <video id="video-tag"  autoplay loop muted>
+                                    <source src="heart.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="bottom-left">
+                                <p id="name-tag">SPO2</p> 
+                                <p class="percentage-tag1" id="percentage">75%</p>
+                                <video id="video-tag"  autoplay loop muted>
+                                    <source src="spo2.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="div2">
+                      <h3>Medication</h3>
+                      <div class="search-container">
+                          <input type="text" class="search-bar" placeholder="Search">
+                          <button class="search-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                                <path d="M21 21l-6 -6" />
+                            </svg>
+                          
+                        </button>
+                      </div>
+                    </div>
+                    <div class="div3">
+                      <button>Consultation
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-trending-up"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 17l6 -6l4 4l8 -8" /><path d="M14 7l7 0l0 7" /></svg>
+                      </button>
+                    </div>
+                    <div class="div4">
+                      <!-- Top left icon -->
+                      <div class="icon-top-left">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+                              <polygon points="12 2 15 8.5 22 9.5 17 14 18 21 12 18 6 21 7 14 2 9.5 9 8.5 12 2"></polygon>
+                          </svg>
+                      </div>
+                      <div class="center-text">
+                          <p>Paracetamol</p>
+                            <h2>25%</h2>
+                      </div>
+                     <div class="top-right-button">Influenza</div>
+                      <div class="container-below">
+                          <p>Respiratory </p>
+                          <h2>523<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-activity"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h4l3 8l4 -16l3 8h4" /></svg></h2>
+                      </div>
+                  </div>
+                  <div class="div5">
+                    
+                    <div class="top-section">
+                      <h5>Scan Cardiology</h5>
+                        <div class="icon">
+                          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-trending-up"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 17l6 -6l4 4l8 -8" /><path d="M14 7l7 0l0 7" /></svg>
+                        </div>
+                       
+                    </div>
+            
+                    
+                    <div class="bottom-section">
+                        <h2>1,276 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-dots-diagonal"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 17m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M17 7m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg></h2>
+                        <p>Cardiovascular Workspace(XPER IM)</p>
+                    </div>
+                </div>
+                <div class="div6">
+                 
+                  <div class="top-section">
+                    <div class="profile">
+                      <div class="profile-icon">
+                          <img src="images/tom.jpg" alt="Profile Photo">
+                      </div>
+                     <h5 class="tom">shiva</h5>
+                  </div>
+                      <div class="file-icon">
+                          
+                          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                              <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                      </div>
+                  </div>
+          
+                 
+                  <ul class="list-section">
+                    <li><p>Heart Rate</p></li>
+                    <li><h1 id="heart-rate">110bpm</h1></li>
+                    <li><p>Temperature</p></li>
+                    <li><h1 id="temperature">34.7°C</h1></li>
+                    <li><p>Blood</p></li>
+                    <li><h1 id="blood-pressure">98%</h1></li>
+                  </ul>
+          
+          
+                  <div class="bottom-section">
+                   <button style="background-color: rgb(255, 255, 255);"> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-trending-up"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 17l6 -6l4 4l8 -8" /><path d="M14 7l7 0l0 7" /></svg></button>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                  </div>
+              </div>
+              <div class="div7">
+                <div class="top-left-icons">
+                    <div class="icon">
+                      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="icon">
+                      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-droplet-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18.288 11.282a6.734 6.734 0 0 0 -.224 -.405l-4.89 -7.26c-.42 -.625 -1.287 -.803 -1.936 -.397a1.376 1.376 0 0 0 -.41 .397l-4.893 7.26c-1.695 2.838 -1.035 6.441 1.567 8.546a7.117 7.117 0 0 0 3.824 1.548" /><path d="M18 22l3.35 -3.284a2.143 2.143 0 0 0 .005 -3.071a2.242 2.242 0 0 0 -3.129 -.006l-.224 .22l-.223 -.22a2.242 2.242 0 0 0 -3.128 -.006a2.143 2.143 0 0 0 -.006 3.071l3.355 3.296z" /></svg>                            <path d="M19.14 12.936a4.988 4.988 0 0 0 .135-.936 5 5 0 0 0-1.985-4.11l1.39-2.408a1 1 0 0 0-.228-1.415l-2.773-1.596a1 1 0 0 0-1.288.248l-1.49 1.49a5 5 0 0 0-2.572-1.29L7.17 3.115a1 1 0 0 0-1.427.464L4.62 6.62a1 1 0 0 0 .315 1.273l2.252 1.539a5 5 0 0 0-1.436 3.237c0 .32.031.635.085.944l-2.146 2.146a1 1 0 0 0 .088 1.425l2.772 1.597a1 1 0 0 0 1.427-.464l1.49-1.49a5 5 0 0 0 2.572 1.29l1.33 2.318a1 1 0 0 0 1.288.248l2.773-1.596a1 1 0 0 0 .228-1.415l-1.39-2.408a5 5 0 0 0 .843-2.303zM12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="top-right-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                </div>
+                <div class="middle-left">
+                    <p>Bisposporate Drugs</p>
+                    <h1>Osteoporosis</h1>
+                </div>
+                <div class="bottom-right-button">
+                    <button class="action-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">
+                            <path d="M22 2L11 13M22 2L16 22 11 13 2 22"></path>
+                        </svg>
+                        
+                    </button>
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-container">
+        <p>&copy; 2024 PROHEALTH All rights reserved.</p>
+        <p><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+        <div class="social-media">
+            <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a>
+        </div>
+    </footer>
+    </body>
+            <script src="script.js"></script>
+        </body>
+</html>

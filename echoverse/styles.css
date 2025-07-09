@@ -1,0 +1,449 @@
+```css
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1a1a2e;
+    color: #ffffff;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Cosmic Background */
+.cosmic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+    z-index: -1;
+}
+
+.stars, .twinkling {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: transparent url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Ccircle cx="50" cy="50" r="1" fill="white" /%3E%3Ccircle cx="20" cy="20" r="0.5" fill="white" /%3E%3Ccircle cx="80" cy="30" r="0.8" fill="white" /%3E%3Ccircle cx="30" cy="80" r="0.6" fill="white" /%3E%3Ccircle cx="70" cy="70" r="0.4" fill="white" /%3E%3C/svg%3E') repeat;
+    animation: moveStars 200s linear infinite;
+}
+
+.twinkling {
+    background: transparent url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Ccircle cx="50" cy="50" r="0.5" fill="white" opacity="0.3" /%3E%3Ccircle cx="25" cy="25" r="0.3" fill="white" opacity="0.5" /%3E%3C/svg%3E') repeat;
+    animation: twinkle 200s linear infinite;
+}
+
+@keyframes moveStars {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100px); }
+}
+
+@keyframes twinkle {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100px); }
+}
+
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.tagline {
+    font-size: 16px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffffff, #e0e0e0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 30px rgba(255,255,255,0.3);
+}
+
+.logo-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.logo-lines span {
+    width: 50px;
+    height: 5px;
+    background: #1a1a2e;
+    border-radius: 3px;
+}
+
+.brand-name {
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.subtitle {
+    font-size: 24px;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+/* Main Title */
+.main-title {
+    text-align: center;
+    font-size: 42px;
+    margin: 40px 0;
+    letter-spacing: 1px;
+}
+
+/* Speech Bubbles */
+.speech-bubble {
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1a2e;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    font-weight: 500;
+    line-height: 1.4;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin: 20px;
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12px 0 12px;
+    border-color: rgba(255, 255, 255, 0.95) transparent transparent transparent;
+}
+
+.hero-bubbles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+.left-bubble { margin-left: 10px; }
+.center-left-bubble { margin-top: 40px; }
+.center-right-bubble { margin-top: 80px; }
+.right-bubble { margin-top: 20px; }
+
+/* Feature Grid */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 60px 0;
+}
+
+.feature-card {
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card-content h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.card-content p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* Gradients */
+.orange-gradient { background: linear-gradient(135deg, #ff6b6b, #ff8f50); }
+.yellow-gradient { background: linear-gradient(135deg, #ffd93d, #f9ca24); }
+.purple-gradient { background: linear-gradient(135deg, #6c5ce7, #a55eea); }
+.dark-gradient { background: linear-gradient(135deg, #2d3436, #000000); }
+.ocean-gradient { background: linear-gradient(135deg, #0984e3, #74b9ff); }
+.violet-gradient { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
+.teal-gradient { background: linear-gradient(135deg, #00b894, #55efc4); }
+.burst-gradient { background: linear-gradient(135deg, #e84393, #f39c12); }
+.beige-gradient { background: linear-gradient(135deg, #dfe6e9, #b2bec3); }
+
+/* Special Speech Bubbles */
+.large-speech-bubble {
+    background: rgba(255, 255, 200, 0.95);
+    color: #1a1a2e;
+    padding: 25px;
+    margin: 20px;
+    border-radius: 30px;
+    position: relative;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.large-speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 15px 0 15px;
+    border-color: rgba(255, 255, 200, 0.95) transparent transparent transparent;
+}
+
+.top-speech-bubble {
+    background: rgba(200, 200, 255, 0.95);
+    color: #1a1a2e;
+    padding: 15px;
+    margin: 20px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.side-speech-bubble {
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1a2e;
+    padding: 10px 20px;
+    border-radius: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.mini-speech-bubble {
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1a2e;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Control Panel */
+.control-panel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 25px;
+}
+
+.control-item {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.control-item.purple { background: #8e44ad; }
+.control-item.blue { background: #3498db; }
+.control-item.green { background: #2ecc71; }
+.control-item.orange { background: #e67e22; }
+
+.control-arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+}
+
+.control-text {
+    background: #ecf0f1;
+    color: #2c3e50;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    height: 60px;
+}
+
+/* Burst Container */
+.burst-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 30px auto;
+}
+
+.burst-rays {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 30%, #e84393 30%, #e84393 35%, transparent 35%),
+                radial-gradient(circle, transparent 30%, #f39c12 30%, #f39c12 35%, transparent 35%);
+    background-size: 100% 100%;
+    animation: burstRotate 10s linear infinite;
+}
+
+.burst-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid white;
+    object-fit: cover;
+}
+
+@keyframes burstRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Bottom Speech Bubble */
+.bottom-speech-bubble {
+    max-width: 600px;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1a2e;
+    padding: 25px;
+    border-radius: 30px;
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+}
+
+.bottom-speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 15px 0 15px;
+    border-color: rgba(255, 255, 255, 0.95) transparent transparent transparent;
+}
+
+/* Animations */
+.feature-card, .speech-bubble {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered animations */
+.feature-card:nth-child(1) { animation-delay: 0.1s; }
+.feature-card:nth-child(2) { animation-delay: 0.2s; }
+.feature-card:nth-child(3) { animation-delay: 0.3s; }
+.feature-card:nth-child(4) { animation-delay: 0.4s; }
+.feature-card:nth-child(5) { animation-delay: 0.5s; }
+.feature-card:nth-child(6) { animation-delay: 0.6s; }
+.feature-card:nth-child(7) { animation-delay: 0.7s; }
+.feature-card:nth-child(8) { animation-delay: 0.8s; }
+.feature-card:nth-child(9) { animation-delay: 0.9s; }
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .hero-bubbles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        flex-direction: column;
+    }
+    
+    .brand-name {
+        font-size: 48px;
+    }
+    
+    .main-title {
+        font-size: 32px;
+    }
+    
+    .hero-bubbles {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .control-panel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

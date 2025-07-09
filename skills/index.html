@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Network Visualization</title>
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.40.0/tabler-icons.min.css" />
+  <style>
+    /* Main container */
+    .skills-container {
+      width: 100%;
+      height: 100vh;
+      background-color: #f9fafb;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .skills-network {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Bubble styles */
+    .skill-bubble {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 1s ease-in-out;
+      color: white;
+      cursor: pointer;
+    }
+    
+    .skill-bubble:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+    
+    /* Skill labels */
+    .skill-label {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      top: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .skill-bubble:hover .skill-label {
+      opacity: 1;
+    }
+    
+    /* Color classes */
+    .blue-bg {
+      background-color: #3b82f6; /* blue-500 - Frontend */
+    }
+    
+    .yellow-bg {
+      background-color: #facc15; /* yellow-400 - Tools & DevOps */
+    }
+    
+    .orange-bg {
+      background-color: #fb923c; /* orange-400 - Backend */
+    }
+    
+    .green-bg {
+      background-color: #4ade80; /* green-400 - Databases */
+    }
+    
+    /* Central hub */
+    .central-hub {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* SVG connections */
+    .connections-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.5s ease;
+    }
+    
+    .connections-svg.hidden {
+      opacity: 0;
+    }
+    
+    .connections-svg.organized {
+      opacity: 1;
+    }
+    
+    /* Curved paths */
+    .curved-path {
+      stroke-width: 4;
+      fill: none;
+      transition: all 1s ease-in-out;
+    }
+    
+    .blue-path {
+      stroke: rgba(59, 130, 246, 0.3); /* blue-500 with opacity - Frontend */
+    }
+    
+    .yellow-path {
+      stroke: rgba(250, 204, 21, 0.3); /* yellow-400 with opacity - Tools */
+    }
+    
+    .orange-path {
+      stroke: rgba(251, 146, 60, 0.3); /* orange-400 with opacity - Backend */
+    }
+    
+    .green-path {
+      stroke: rgba(74, 222, 128, 0.3); /* green-400 with opacity - Databases */
+    }
+    
+    /* Animated dots */
+    .animated-dot {
+      animation: pulse 3s infinite ease-in-out;
+    }
+    
+    .blue-dot {
+      fill: rgba(59, 130, 246, 0.8); /* Frontend */
+    }
+    
+    .yellow-dot {
+      fill: rgba(250, 204, 21, 0.8); /* Tools */
+    }
+    
+    .orange-dot {
+      fill: rgba(251, 146, 60, 0.8); /* Backend */
+    }
+    
+    .green-dot {
+      fill: rgba(74, 222, 128, 0.8); /* Databases */
+    }
+    
+    /* Category labels */
+    .category-label {
+      position: absolute;
+      color: #6b7280; /* gray-500 */
+      font-weight: 500;
+      letter-spacing: 0.025em;
+      white-space: nowrap;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+    
+    .top-label {
+      top: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #3b82f6; /* blue-500 - Frontend */
+    }
+    
+    .left-label {
+      top: 50%;
+      left: 64px;
+      transform: translateY(-50%) rotate(-90deg);
+      color: #facc15; /* yellow-400 - Tools */
+    }
+    
+    .right-label {
+      top: 50%;
+      right: 64px;
+      transform: translateY(-50%) rotate(90deg);
+      color: #fb923c; /* orange-400 - Backend */
+    }
+    
+    .bottom-label {
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #4ade80; /* green-400 - Databases */
+    }
+    
+    /* Decoration bubbles */
+    .decoration-bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: float 15s infinite ease-in-out;
+      transition: all 1s ease-in-out;
+    }
+    
+    .bubble-blue {
+      background-color: #93c5fd; /* blue-300 - Frontend */
+    }
+    
+    .bubble-yellow {
+      background-color: #fde68a; /* yellow-300 - Tools */
+    }
+    
+    .bubble-orange {
+      background-color: #fdba74; /* orange-300 - Backend */
+    }
+    
+    .bubble-green {
+      background-color: #86efac; /* green-300 - Databases */
+    }
+    
+    /* Touch instruction */
+    .touch-instruction {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 30;
+    }
+    
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, 20px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.9; }
+    }
+    
+    /* 
+     * RESPONSIVE STYLING
+     * Targeting all screen sizes from large desktop to small mobile
+     */
+    
+    /* XL Screens (1440px and above) */
+    @media (min-width: 1440px) {
+      .skill-bubble {
+        width: 56px;
+        height: 56px;
+      }
+      
+      .icon {
+        width: 28px;
+        height: 28px;
+      }
+      
+      .central-hub {
+        width: 64px;
+        height: 64px;
+        font-size: 18px;
+      }
+      
+      .category-label {
+        font-size: 18px;
+      }
+      
+      .skill-label {
+        font-size: 14px;
+        padding: 4px 10px;
+      }
+      
+      .top-label {
+        top: 60px;
+      }
+      
+      .bottom-label {
+        bottom: 60px;
+      }
+      
+      .left-label {
+        left: 80px;
+      }
+      
+      .right-label {
+        right: 80px;
+      }
+      
+      .curved-path {
+        stroke-width: 5;
+      }
+    }
+    
+    /* Medium Screens (tablet, 768px - 1023px) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .skill-bubble {
+        width: 42px;
+        height: 42px;
+      }
+      
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+      
+      .central-hub {
+        width: 50px;
+        height: 50px;
+        font-size: 14px;
+      }
+      
+      .category-label {
+        font-size: 14px;
+      }
+      
+      .left-label {
+        left: 48px;
+      }
+      
+      .right-label {
+        right: 48px;
+      }
+      
+      .top-label {
+        top: 40px;
+      }
+      
+      .bottom-label {
+        bottom: 40px;
+      }
+      
+      .curved-path {
+        stroke-width: 3;
+      }
+    }
+    
+    /* Small Screens (small tablet / large phone, 576px - 767px) */
+    @media (min-width: 576px) and (max-width: 767px) {
+      .skill-bubble {
+        width: 36px;
+        height: 36px;
+      }
+      
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+      
+      .central-hub {
+        width: 45px;
+        height: 45px;
+        font-size: 13px;
+      }
+      
+      .category-label {
+        font-size: 12px;
+      }
+      
+      .left-label {
+        left: 36px;
+      }
+      
+      .right-label {
+        right: 36px;
+      }
+      
+      .top-label {
+        top: 32px;
+      }
+      
+      .bottom-label {
+        bottom: 32px;
+      }
+      
+      .curved-path {
+        stroke-width: 2.5;
+      }
+      
+      .skill-label {
+        font-size: 10px;
+        padding: 2px 6px;
+      }
+    }
+    
+    /* Mobile Screens (320px - 575px) */
+    @media (max-width: 575px) {
+      .skill-bubble {
+        width: 30px;
+        height: 30px;
+      }
+      
+      .icon {
+        width: 15px;
+        height: 15px;
+      }
+      
+      .central-hub {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+      }
+      
+      .category-label {
+        font-size: 10px;
+      }
+      
+      .left-label {
+        left: 24px;
+      }
+      
+      .right-label {
+        right: 24px;
+      }
+      
+      .top-label {
+        top: 24px;
+      }
+      
+      .bottom-label {
+        bottom: 24px;
+      }
+      
+      .curved-path {
+        stroke-width: 2;
+      }
+      
+      .skill-label {
+        font-size: 9px;
+        padding: 2px 5px;
+      }
+    }
+    
+    /* Height-based media queries for very short screens */
+    @media (max-height: 500px) {
+      .top-label, .bottom-label {
+        display: none; /* Hide top/bottom labels on very short screens */
+      }
+    }
+    
+    /* Prefers reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .skill-bubble,
+      .central-hub,
+      .connections-svg,
+      .curved-path,
+      .category-label,
+      .decoration-bubble {
+        transition: opacity 0.3s ease;
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        animation: none !important;
+      }
+      
+      .animated-dot {
+        animation: none !important;
+      }
+      
+      .decoration-bubble {
+        animation: none !important;
+      }
+    }
+    
+    /* Support for dark mode */
+    @media (prefers-color-scheme: dark) {
+      .skills-container {
+        background-color: #1f2937; /* gray-800 */
+      }
+      
+      .category-label {
+        opacity: 0.9;
+      }
+      
+      .skill-label {
+        background-color: rgba(0, 0, 0, 0.85);
+      }
+    }
+
+    /* Tabler icon specific styling */
+    .skill-bubble i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    /* Responsive icon sizing */
+    @media (max-width: 1200px) {
+      .skill-bubble i {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .skill-bubble i {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .skill-bubble i {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .skill-bubble i {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="skills-container">
+    <div class="skills-network" id="skills-network">
+      <!-- Category labels - only show when hovered -->
+      <div class="category-label top-label" style="display: none;">FRONTEND TECHNOLOGIES</div>
+      <div class="category-label left-label" style="display: none;">TOOLS & DEVOPS</div>
+      <div class="category-label right-label" style="display: none;">BACKEND TECHNOLOGIES</div>
+      <div class="category-label bottom-label" style="display: none;">DATABASES</div>
+
+      <!-- Central hub - only when hovered -->
+      <div class="central-hub blue-bg" style="display: none;">
+        SKILLS
+      </div>
+      
+      <!-- Connections SVGs will be dynamically inserted here -->
+      <svg class="connections-svg" id="initial-connections-svg"></svg>
+      <svg class="connections-svg organized" id="organized-connections-svg" style="opacity: 0;"></svg>
+      
+      <!-- Bubbles and decoration will be inserted dynamically -->
+      
+      <!-- Touch instruction -->
+      <div class="touch-instruction" id="touch-instruction" style="opacity: 0.8;">
+        Tap to interact
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // DOM Elements
+      const container = document.getElementById('skills-network');
+      const initialConnectionsSvg = document.getElementById('initial-connections-svg');
+      const organizedConnectionsSvg = document.getElementById('organized-connections-svg');
+      const touchInstruction = document.getElementById('touch-instruction');
+      const categoryLabels = document.querySelectorAll('.category-label');
+      const centralHub = document.querySelector('.central-hub');
+      
+      // State variables
+      let hovered = false;
+      let positions = [];
+      let initialized = false;
+      let windowSize = {
+        width: window.innerWidth,
+        height: window.innerHeight
+      };
+      
+      // Define skills with professional tech stack icons and labels
+      const skills = {
+        blue: [ // Frontend Technologies
+          { icon: "brand-html5", label: "" },
+          { icon: "brand-css3", label: "" },
+          { icon: "brand-javascript", label: "" },
+          { icon: "brand-react", label: "" },
+          { icon: "brand-tailwind", label: "" }
+        ],
+        yellow: [ // Tools & DevOps
+          { icon: "brand-git", label: "" },
+          { icon: "brand-github", label: "" },
+          { icon: "brand-visual-studio", label: "" },
+          { icon: "brand-npm", label: "" }
+        ],
+        orange: [ // Backend Technologies
+          { icon: "brand-nodejs", label: "" },
+          { icon: "brand-python", label: "" },
+          { icon: "api", label: "" },
+          { icon: "server", label: "" }
+        ],
+        green: [ // Databases
+          { icon: "brand-mongodb", label: "" },
+          { icon: "sql", label: "" },
+          { icon: "database", label: "" },
+          { icon: "database-cog", label: "" }
+        ]
+      };
+      
+      // Define initial positions
+      const initialLayout = [
+        // Green bubbles (Databases - scattered around)
+        { color: "green", icon: "brand-mongodb", x: 25, y: 20 },
+        { color: "green", icon: "sql", x: 75, y: 20 },
+        { color: "green", icon: "database", x: 15, y: 50 },
+        { color: "green", icon: "database-cog", x: 60, y: 60 },
+        
+        // Yellow bubbles (Tools)
+        { color: "yellow", icon: "brand-git", x: 45, y: 15 },
+        { color: "yellow", icon: "brand-github", x: 80, y: 90 },
+        { color: "yellow", icon: "brand-visual-studio", x: 40, y: 50 },
+        { color: "yellow", icon: "brand-npm", x: 25, y: 85 },
+        
+        // Orange bubbles (Backend)
+        { color: "orange", icon: "brand-nodejs", x: 70, y: 40 },
+        { color: "orange", icon: "brand-python", x: 85, y: 70 },
+        { color: "orange", icon: "api", x: 20, y: 85 },
+        { color: "orange", icon: "server", x: 55, y: 30 },
+        
+        // Blue bubbles (Frontend - scattered)
+        { color: "blue", icon: "brand-html5", x: 40, y: 40 },
+        { color: "blue", icon: "brand-css3", x: 15, y: 80 },
+        { color: "blue", icon: "brand-javascript", x: 50, y: 80 },
+        { color: "blue", icon: "brand-react", x: 80, y: 80 },
+        { color: "blue", icon: "brand-tailwind", x: 65, y: 50 }
+      ];
+      
+      // Check for touch devices
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      
+      // Initialize positions
+      function initializePositions() {
+        if (initialized) return;
+        
+        const { width, height } = container.getBoundingClientRect();
+        
+        // Convert percentage positions to actual pixels
+        positions = initialLayout.map(item => ({
+          ...item,
+          x: (item.x / 100) * width,
+          y: (item.y / 100) * height
+        }));
+        
+        initialized = true;
+        renderBubbles();
+        renderInitialConnections();
+        renderDecorationBubbles();
+      }
+      
+      // Render bubbles
+      function renderBubbles() {
+        // Clear existing bubbles first
+        const existingBubbles = document.querySelectorAll('.skill-bubble');
+        existingBubbles.forEach(bubble => bubble.remove());
+        
+        positions.forEach((bubble, i) => {
+          const bubbleElem = document.createElement('div');
+          bubbleElem.className = `skill-bubble ${bubble.color}-bg`;
+          bubbleElem.dataset.index = i;
+          bubbleElem.dataset.color = bubble.color;
+          bubbleElem.dataset.icon = bubble.icon;
+          
+          const icon = document.createElement('i');
+          icon.className = `ti ti-${bubble.icon}`;
+          bubbleElem.appendChild(icon);
+          
+          const label = document.createElement('span');
+          label.className = 'skill-label';
+          label.textContent = bubble.icon.replace('brand-', '').replace('-', ' ');
+          bubbleElem.appendChild(label);
+          
+          bubbleElem.style.left = `${bubble.x}px`;
+          bubbleElem.style.top = `${bubble.y}px`;
+          
+          container.appendChild(bubbleElem);
+        });
+      }
+      
+      // Get organized position
+      function getOrganizedPosition(color, index) {
+        const centerX = container.clientWidth / 2;
+        const centerY = container.clientHeight / 2;
+        
+        // Scaling factor for different screen sizes
+        const getScaleFactor = () => {
+          const width = windowSize.width;
+          if (width < 400) return 0.5;
+          if (width < 576) return 0.6;
+          if (width < 768) return 0.7;
+          if (width < 1024) return 0.8;
+          if (width < 1440) return 0.9;
+          return 1;
+        };
+        
+        // Handle mobile screens with different aspect ratios
+        const isLandscape = windowSize.width > windowSize.height;
+        const isShortScreen = windowSize.height < 500;
+        
+        const scaleFactor = getScaleFactor();
+        
+        // Adjust vertical spacing for landscape mode on mobile
+        const verticalCompression = isLandscape && isShortScreen ? 0.6 : 1;
+        
+        switch (color) {
+          case "blue":
+            return { 
+              x: centerX - (220 * scaleFactor) + index * (110 * scaleFactor), 
+              y: centerY - (200 * scaleFactor * verticalCompression)
+            };
+          case "yellow":
+            return { 
+              x: centerX - (200 * scaleFactor), 
+              y: centerY - (120 * scaleFactor * verticalCompression) + index * (80 * scaleFactor * verticalCompression)
+            };
+          case "orange":
+            return { 
+              x: centerX + (200 * scaleFactor), 
+              y: centerY - (120 * scaleFactor * verticalCompression) + index * (80 * scaleFactor * verticalCompression)
+            };
+          case "green":
+            return { 
+              x: centerX - (170 * scaleFactor) + index * (110 * scaleFactor), 
+              y: centerY + (200 * scaleFactor * verticalCompression)
+            };
+          default:
+            return { x: centerX, y: centerY };
+        }
+      }
+      
+      // Draw initial connections
+      function renderInitialConnections() {
+        initialConnectionsSvg.innerHTML = '';
+        
+        positions.forEach((bubble1, i) => {
+          positions.slice(i + 1).forEach((bubble2, j) => {
+            if (shouldConnect(bubble1, bubble2)) {
+              const path = getStraightPathWithGaps(bubble1.x, bubble1.y, bubble2.x, bubble2.y);
+              if (!path) return;
+              
+              const pathElem = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+              pathElem.setAttribute('d', path);
+              pathElem.setAttribute('stroke', getConnectionColor(bubble1, bubble2));
+              pathElem.setAttribute('stroke-width', '1');
+              pathElem.setAttribute('fill', 'none');
+              
+              initialConnectionsSvg.appendChild(pathElem);
+            }
+          });
+        });
+      }
+      
+      // Draw organized connections
+      function renderOrganizedConnections() {
+        organizedConnectionsSvg.innerHTML = '';
+        
+        // Add marker definitions
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        
+        const markerColors = {
+          'blue': 'rgba(59, 130, 246, 0.5)',
+          'yellow': 'rgba(250, 204, 21, 0.5)',
+          'orange': 'rgba(251, 146, 60, 0.5)',
+          'green': 'rgba(74, 222, 128, 0.5)'
+        };
+        
+        Object.entries(markerColors).forEach(([color, rgba]) => {
+          const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+          marker.setAttribute('id', `arrow${color.charAt(0).toUpperCase() + color.slice(1)}`);
+          marker.setAttribute('markerWidth', '10');
+          marker.setAttribute('markerHeight', '10');
+          marker.setAttribute('refX', '9');
+          marker.setAttribute('refY', '3');
+          marker.setAttribute('orient', 'auto');
+          marker.setAttribute('markerUnits', 'strokeWidth');
+          
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', 'M0,0 L0,6 L9,3 z');
+          path.setAttribute('fill', rgba);
+          
+          marker.appendChild(path);
+          defs.appendChild(marker);
+        });
+        
+        organizedConnectionsSvg.appendChild(defs);
+        
+        // Draw curved paths for each category
+        Object.entries(skills).forEach(([color, skillsArray]) => {
+          skillsArray.forEach((skill, i) => {
+            const centerX = container.clientWidth / 2;
+            const centerY = container.clientHeight / 2;
+            const pos = getOrganizedPosition(color, i);
+            
+            const pathElem = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            
+            let curveDirection;
+            switch(color) {
+              case 'blue': curveDirection = 'up'; break;
+              case 'yellow': curveDirection = 'left'; break;
+              case 'orange': curveDirection = 'right'; break;
+              case 'green': curveDirection = 'down'; break;
+              default: curveDirection = 'up';
+            }
+            
+            pathElem.setAttribute('d', getCurvedPath(pos.x, pos.y, centerX, centerY, curveDirection));
+            pathElem.setAttribute('class', `curved-path ${color}-path`);
+            
+            organizedConnectionsSvg.appendChild(pathElem);
+            
+            // Add animated dots
+            renderAnimatedDots(color, i, pos, centerX, centerY, curveDirection);
+          });
+        });
+      }
+      
+      // Render animated dots along paths
+      function renderAnimatedDots(color, index, pos, centerX, centerY, curveDirection) {
+        // Adjust number of dots based on screen size
+        const dotCount = windowSize.width < 576 ? 2 : 3;
+        
+        for (let j = 0; j < dotCount; j++) {
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('r', windowSize.width < 576 ? 2 : 3);
+          circle.setAttribute('class', `animated-dot ${color}-dot`);
+          
+          // Create animateMotion element
+          const animateMotion = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+          animateMotion.setAttribute('path', getCurvedPath(pos.x, pos.y, centerX, centerY, curveDirection));
+          animateMotion.setAttribute('dur', windowSize.width < 576 ? '4s' : '3s');
+          animateMotion.setAttribute('begin', `${j * 1}s`);
+          animateMotion.setAttribute('repeatCount', 'indefinite');
+          
+          circle.appendChild(animateMotion);
+          circle.style.animationDelay = `${j * 1}s`;
+          
+          organizedConnectionsSvg.appendChild(circle);
+        }
+      }
+      
+      // Create decoration bubbles
+      function renderDecorationBubbles() {
+        // Clear existing decoration bubbles
+        const existingBubbles = document.querySelectorAll('.decoration-bubble');
+        existingBubbles.forEach(bubble => bubble.remove());
+        
+        // Adjust number of decoration bubbles based on screen size
+        const bubbleCount = windowSize.width < 576 ? 15 : 
+                          windowSize.width < 768 ? 20 : 
+                          windowSize.width < 1024 ? 25 : 30;
+        
+        for (let i = 0; i < bubbleCount; i++) {
+          // Scale size based on screen dimensions
+          const maxSize = windowSize.width < 576 ? 4 : 
+                        windowSize.width < 768 ? 5 : 
+                        windowSize.width < 1024 ? 5.5 : 6;
+          
+          const size = 2 + Math.random() * maxSize;
+          const colors = ["bubble-blue", "bubble-yellow", "bubble-orange", "bubble-green"];
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const left = `${Math.random() * 100}%`;
+          const top = `${Math.random() * 100}%`;
+          
+          const bubble = document.createElement('div');
+          bubble.className = `decoration-bubble ${color}`;
+          bubble.style.width = `${size}px`;
+          bubble.style.height = `${size}px`;
+          bubble.style.left = left;
+          bubble.style.top = top;
+          bubble.style.animationDelay = `${i * 0.2}s`;
+          
+          container.appendChild(bubble);
+        }
+      }
+      
+      // Helper functions
+      function getCurvedPath(startX, startY, endX, endY, curveDirection) {
+        const midX = (startX + endX) / 2;
+        const midY = (startY + endY) / 2;
+        
+        // Scale curve intensity based on screen size
+        const getCurveIntensity = () => {
+          const width = windowSize.width;
+          if (width < 576) return 30;
+          if (width < 768) return 40;
+          if (width < 1024) return 45;
+          return 50;
+        };
+        
+        const curveIntensity = getCurveIntensity();
+        
+        let controlX, controlY;
+        
+        switch (curveDirection) {
+          case "up":
+            controlX = midX;
+            controlY = midY - curveIntensity;
+            break;
+          case "down":
+            controlX = midX;
+            controlY = midY + curveIntensity;
+            break;
+          case "left":
+            controlX = midX - curveIntensity;
+            controlY = midY;
+            break;
+          case "right":
+            controlX = midX + curveIntensity;
+            controlY = midY;
+            break;
+          default:
+            controlX = midX;
+            controlY = midY;
+        }
+        
+        return `M ${startX} ${startY} Q ${controlX} ${controlY} ${endX} ${endY}`;
+      }
+      
+      // Generate a straight path with gaps
+      function getStraightPathWithGaps(x1, y1, x2, y2) {
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        // Skip if too close
+        const minDistance = windowSize.width < 576 ? 35 : 50;
+        if (distance < minDistance) return null;
+        
+        // Calculate direction vector
+        const dirX = dx / distance;
+        const dirY = dy / distance;
+        
+        // Create gaps by starting away from bubbles
+        // Scale bubble size based on screen size
+        const bubbleRadius = windowSize.width < 576 ? 15 : 
+                          windowSize.width < 768 ? 18 : 
+                          windowSize.width < 1024 ? 21 : 25;
+                          
+        const startX = x1 + dirX * bubbleRadius;
+        const startY = y1 + dirY * bubbleRadius;
+        const endX = x2 - dirX * bubbleRadius;
+        const endY = y2 - dirY * bubbleRadius;
+        
+        return `M ${startX} ${startY} L ${endX} ${endY}`;
+      }
+      
+      // Determine if we should create a connection between two bubbles
+      function shouldConnect(bubble1, bubble2) {
+        // Connect if they're the same color or reasonably close
+        const dx = bubble1.x - bubble2.x;
+        const dy = bubble1.y - bubble2.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        // Scale connection distance based on screen size
+        const maxDistance = windowSize.width < 576 ? 200 : 
+                          windowSize.width < 768 ? 250 : 
+                          windowSize.width < 1024 ? 280 : 300;
+        const minDistance = windowSize.width < 576 ? 35 : 50;
+        
+        return (bubble1.color === bubble2.color || distance < maxDistance) && distance > minDistance;
+      }
+      
+      // Get path stroke color based on bubble colors
+      function getConnectionColor(bubble1, bubble2) {
+        if (bubble1.color === bubble2.color) {
+          switch (bubble1.color) {
+            case "blue": return "rgba(59, 130, 246, 0.2)";
+            case "yellow": return "rgba(250, 204, 21, 0.2)";
+            case "orange": return "rgba(251, 146, 60, 0.2)";
+            case "green": return "rgba(74, 222, 128, 0.2)";
+            default: return "rgba(209, 213, 219, 0.2)";
+          }
+        }
+        return "rgba(209, 213, 219, 0.2)"; // Default light connection
+      }
+      
+      // Toggle hover state
+      function toggleHover() {
+        hovered = !hovered;
+        
+        // Toggle visibility of elements
+        Array.from(categoryLabels).forEach(label => {
+          label.style.display = hovered ? 'block' : 'none';
+        });
+        
+        centralHub.style.display = hovered ? 'flex' : 'none';
+        initialConnectionsSvg.classList.toggle('hidden', hovered);
+        organizedConnectionsSvg.style.opacity = hovered ? 1 : 0;
+        touchInstruction.style.opacity = hovered ? 0 : 0.8;
+        
+        // Update bubble positions
+        updateBubblePositions();
+      }
+      
+      // Update bubble positions based on hover state
+      function updateBubblePositions() {
+        const bubbles = document.querySelectorAll('.skill-bubble');
+        
+        bubbles.forEach(bubble => {
+          const index = parseInt(bubble.dataset.index);
+          const color = bubble.dataset.color;
+          const icon = bubble.dataset.icon;
+          
+          if (hovered) {
+            // Organized layout - group by category
+            const colorIndex = skills[color].findIndex(skill => skill.icon === icon);
+            const organizedPos = getOrganizedPosition(color, colorIndex);
+            
+            bubble.style.left = `${organizedPos.x}px`;
+            bubble.style.top = `${organizedPos.y}px`;
+          } else {
+            // Original scattered layout
+            bubble.style.left = `${positions[index].x}px`;
+            bubble.style.top = `${positions[index].y}px`;
+          }
+        });
+      }
+      
+      // Handle window resize
+      function handleResize() {
+        windowSize = {
+          width: window.innerWidth,
+          height: window.innerHeight
+        };
+        
+        // Reset positions on resize
+        initialized = false;
+        initializePositions();
+        
+        if (hovered) {
+          renderOrganizedConnections();
+          updateBubblePositions();
+        }
+      }
+      
+      // Event Listeners
+      if (isTouchDevice) {
+        container.addEventListener('click', function() {
+          toggleHover();
+        });
+      } else {
+        container.addEventListener('mouseenter', function() {
+          if (!hovered) {
+            toggleHover();
+          }
+        });
+        
+        container.addEventListener('mouseleave', function() {
+          if (hovered) {
+            toggleHover();
+          }
+        });
+      }
+      
+      window.addEventListener('resize', handleResize);
+      
+      // Initial setup
+      initializePositions();
+      renderOrganizedConnections(); // Pre-render for when hovering starts
+      
+    });
+  </script>
+</body>
+</html>

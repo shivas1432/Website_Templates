@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script defer src="main.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <main>
+        <aside>
+            <ul class="Links">
+                <li onclick="Navigate(0)" class="activeLink"><i class="fa-solid fa-house"></i>
+                    <p>Home</p>
+                </li>
+                <li onclick="Navigate(1)"><i class="fa-solid fa-user" ></i>
+                    <p>About Me</p>
+                </li>
+                <li onclick="Navigate(2)"><i class="fa-solid fa-list"></i>
+                    <p>Services</p>
+                </li>
+                <li onclick="Navigate(3)"><i class="fa-solid fa-images"></i>
+                    <p>Gallery</p>
+                </li>
+                <li onclick="Navigate(4)"><i class="fa-solid fa-comments"></i>
+                    <p>Contact Me</p>
+                </li>
+            </ul>
+        </aside>
+        <div class="swiper mySwiper">
+            <div class="SlideContainer swiper-wrapper">
+                <div class="swiper-slide home-slide">
+                    <div class="HomeContent">
+                        <h1>Hi! I'm <span class="stylized-name">SHIVASHANKER KANUGULA</span>,</h1>
+                        <h2>A <span class="proffesions">Web Developer</span></h2>
+                        <p class="heroline">When developing websites, prioritize responsive design for all devices, optimize performance by minimizing load times with image compression and file minification, and ensure accessibility compliance by following WCAG guidelines.</p>
+                        <div class="buttonGroup"><button>Hire Me</button><button>Contact Me</button></div>
+                    </div>
+                    <div class="SideImg">
+                        <div class="top-right-corner">
+                            <hr class="hr1">
+                            <hr class="hr2">
+                        </div>
+                        <img src="https://picsum.photos/id/237/200/200" alt="">
+                        <div class="bottom-left-corner">
+                            <hr class="hr1">
+                            <hr class="hr2">
+                        </div>
+                    </div>
+                    <p class="slide-help">Scroll for next slide <i class="fa-solid fa-chevron-right fa-shake"></i>
+                    </p>
+                </div>
+                <div class="swiper-slide">
+                    <div class="about-us">
+                    <h1 class="heading">About Me</h1>
+                    <h3 class="sub-heading">I'm SHIVASHANKER, <span class="proffesions">A Web Developer</span></h3>
+                    <p class="aboutme-deatils">
+                        When developing websites, prioritize responsive design for all devices, optimize performance by minimizing load times with image compression and file minification, and ensure accessibility compliance by following WCAG guidelines. Use semantic HTML, proper color contrast, and ARIA attributes to enhance usability for individuals with disabilities, ensuring an inclusive user experience.                    </p>
+                    <div class="about-me-divison">
+                        <div class="about-me-table">
+                            <li><span>Experience:</span> 1+ years</li>
+                            <li><span>Country:</span> india</li>
+                            <li><span>Avability:</span> 24/7 </li>
+                            <li><span>Satisfied Clients:</span>200+</li>
+                            <li><span>Age</span>:24</li>
+                            <li><span>Phone</span>:1234567890</li>
+                            <li><span>Language Used:</span>HTML</li>
+                            <li><span>Degree</span>:CS</li>
+                            <div class="buttonGroup"><button>Hire Me</button><button>Contact Me</button></div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <li>
+                                <p>HTML</p>
+                                <div class="bar">
+                                    <div class="active-bar" style="width:99%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>CSS</p>
+                                <div class="bar">
+                                    <div class="active-bar" style="width:80%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>JavaScript</p>
+                                <div class="bar">
+                                    <div class="active-bar" style="width:85%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Python</p>
+                                <div class="bar">
+                                    <div class="active-bar" style="width:50%"></div>
+                                </div>
+                            </li>
+                           
+                        </div>
+                    </div>
+                </div></div>
+                <div class="swiper-slide services">
+
+                    <h1 class="heading">Services</h1>
+                    <div class="service">
+                        <div class="service-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+                        <h2>Web Design</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, quod.</p>
+                    </div>
+                    <div class="service">
+                        <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
+                        <h2>Web Development</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, quod.</p>
+                    </div>
+                    <div class="service">
+                        <div class="service-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <h2>SEO</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, quod.</p>
+                    </div>
+                    <div class="service">
+                        <div class="service-icon"><i class="fa-solid fa-image"></i></div>
+                        <h2>Graphic Designer</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, quod.</p>
+                    </div>
+                    <div class="service">
+                        <div class="service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <h2>Software Developer</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, quod.</p>
+                    </div>
+                    <div class="service">
+                        <div class="service-icon"><i class="fa-solid fa-database"></i></div>
+                        <h2>Database Admin</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, quod.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide gallery">
+                    <h1 class="heading">Gallery</h1>
+                    <div class="project"><img src="https://picsum.photos/200/300?random=1" alt=""></div>
+                    <div class="project"><img src="https://picsum.photos/200/300?random=2" alt=""></div>
+                    <div class="project"><img src="https://picsum.photos/200/300?random=3" alt=""></div>
+                    <div class="project"><img src="https://picsum.photos/200/300?random=4" alt=""></div>
+                    <div class="project"><img src="https://picsum.photos/200/300?random=5" alt=""></div>
+                    <div class="project"><img src="https://picsum.photos/200/300?random=6" alt=""></div>
+                </div>
+                <div class="swiper-slide contactMe">
+                    <h1 class="heading">Contact Me</h1>
+                    <div class="contactinfo"><i class="fa-solid fa-phone"></i>
+                        <h3>Mobile No</h3>
+                        <p>1234567890</p>
+                    </div>
+                    <div class="contactinfo"><i class="fa-solid fa-location-dot"></i>
+                        <h3>Location</h3>
+                        <p>Somewhere On Earth</p>
+                    </div>
+                    <div class="contactinfo"><i class="fa-regular fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>abc123@gmail.com</p>
+                    </div>
+                    <div class="contactinfo"><i class="fa-solid fa-globe"></i>
+                        <h3>Website</h3>
+                        <p>www.abc123.com</p>
+                    </div>
+                    <form>
+                        <h2>Send Me A Message <div class="SocialLinks">
+                                <i class="fa-brands fa-codepen"></i>
+                                <i class="fa-brands fa-instagram"></i>
+                                <i class="fa-brands fa-twitter"></i>
+                                <i class="fa-brands fa-twitter"></i>
+                                <i class="fa-brands fa-facebook"></i>
+                            </div>
+                        </h2>
+                        <input type="text" placeholder="Name">
+                        <input type="text" placeholder="email">
+                        <textarea rows="10" placeholder="Type your Message Here..."></textarea>
+                        <button class="primary">Send</button>
+
+                    </form>
+                    <footer>
+                        <li>Copyright © 2024.</li>
+                    </footer>
+                </div>
+            </div>
+    </main>
+
+</body>
+</html>

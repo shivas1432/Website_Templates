@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoQuest - Time Travel Experience</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-portal"></div>
+        <div class="loading-text">INITIATING TIME TRAVEL...</div>
+    </div>
+
+    <canvas id="particles-bg"></canvas>
+    <div class="cosmic-bg"></div>
+    
+    <nav class="navbar">
+        <div class="logo">CHRONOQUEST</div>
+        <div class="nav-links">
+            <a href="#home" class="nav-link">HOME</a>
+            <a href="#eras" class="nav-link">ERAS</a>
+            <a href="#reviews" class="nav-link">REVIEWS</a>
+            <a href="#how-it-works" class="nav-link">HOW IT WORKS</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+            <a href="#book" class="cta-button">EMBARK A JOURNEY</a>
+        </div>
+        <div class="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="scene-elements">
+            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=500&auto=format&fit=crop&q=60" alt="Pyramids" class="pyramid-scene">
+            <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=500&auto=format&fit=crop&q=60" alt="Space" class="space-scene">
+            <img src="https://images.unsplash.com/photo-1629739884942-8678d138dd64?w=300&auto=format&fit=crop&q=60" alt="Dinosaur" class="dino-element">
+            <img src="https://images.unsplash.com/photo-1609601041873-c629b3de3f74?w=300&auto=format&fit=crop&q=60" alt="Ancient People" class="ancient-people">
+        </div>
+        
+        <div class="hero-content">
+            <div class="time-portal">
+                <div class="portal-ring"></div>
+                <div class="portal-inner"></div>
+                <div class="portal-glow"></div>
+                <div class="portal-particles"></div>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-word">BOOK</span>
+                <span class="title-word">YOUR</span>
+                <span class="title-highlight">JOURNEY</span>
+                <br>
+                <span class="title-word">THROUGH</span>
+                <span class="title-word">TIME</span>
+            </h1>
+        </div>
+        
+        <div class="grid-floor">
+            <div class="grid-lines"></div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+ 
+<section class="timeline-visual" id="timeline">
+    <h2 class="section-title" data-text="TIME TRAVEL EXPERIENCE">TIME TRAVEL EXPERIENCE</h2>
+    
+    <div class="timeline-wrapper">
+       
+        <svg class="timeline-svg" viewBox="0 0 1400 400" preserveAspectRatio="xMidYMid meet">
+            <defs>
+                <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#FF00FF;stop-opacity:1">
+                        <animate attributeName="stop-color" values="#FF00FF;#00FFFF;#FF00FF" dur="8s" repeatCount="indefinite"/>
+                    </stop>
+                    <stop offset="50%" style="stop-color:#00FFFF;stop-opacity:1">
+                        <animate attributeName="stop-color" values="#00FFFF;#FF00FF;#00FFFF" dur="8s" repeatCount="indefinite"/>
+                    </stop>
+                    <stop offset="100%" style="stop-color:#FF00FF;stop-opacity:1">
+                        <animate attributeName="stop-color" values="#FF00FF;#00FFFF;#FF00FF" dur="8s" repeatCount="indefinite"/>
+                    </stop>
+                </linearGradient>
+                
+                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                
+                <filter id="dotGlow">
+                    <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            
+            <!-- Timeline Path -->
+            <path id="timelinePath" class="timeline-path" 
+                  d="M100,200 Q350,100 700,200 T1300,200" 
+                  stroke="url(#pathGradient)" 
+                  stroke-width="4" 
+                  fill="none"
+                  filter="url(#glow)"/>
+            
+            <!-- Event Points on Path -->
+            <g class="timeline-points" filter="url(#dotGlow)">
+                <!-- Point 1 - Ancient Egypt -->
+                <circle cx="100" cy="200" r="12" fill="#00FFFF" class="timeline-point">
+                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                
+                <!-- Point 2 - Roman Empire -->
+                <circle cx="425" cy="140" r="12" fill="#00FFFF" class="timeline-point">
+                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite" begin="0.4s"/>
+                    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" begin="0.4s"/>
+                </circle>
+                
+                <!-- Point 3 - Feudal Japan -->
+                <circle cx="700" cy="200" r="12" fill="#00FFFF" class="timeline-point">
+                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite" begin="0.8s"/>
+                    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" begin="0.8s"/>
+                </circle>
+                
+                <!-- Point 4 - Roaring Twenties -->
+                <circle cx="975" cy="260" r="12" fill="#00FFFF" class="timeline-point">
+                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite" begin="1.2s"/>
+                    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" begin="1.2s"/>
+                </circle>
+                
+                <!-- Point 5 - Mars Colony -->
+                <circle cx="1300" cy="200" r="12" fill="#00FFFF" class="timeline-point">
+                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite" begin="1.6s"/>
+                    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" begin="1.6s"/>
+                </circle>
+            </g>
+            
+            <!-- Animated Energy Pulse -->
+            <circle class="timeline-pulse" r="8" fill="#FF00FF">
+                <animateMotion dur="10s" repeatCount="indefinite">
+                    <mpath href="#timelinePath"/>
+                </animateMotion>
+                <animate attributeName="r" values="8;12;8" dur="1s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="1;0.5;1" dur="1s" repeatCount="indefinite"/>
+            </circle>
+            
+            <!-- Secondary Pulse -->
+            <circle class="timeline-pulse" r="6" fill="#00FFFF">
+                <animateMotion dur="10s" repeatCount="indefinite" begin="5s">
+                    <mpath href="#timelinePath"/>
+                </animateMotion>
+                <animate attributeName="r" values="6;10;6" dur="1s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.8;0.4;0.8" dur="1s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+        
+        <!-- Timeline Events -->
+        <div class="timeline-events">
+            <div class="timeline-event" data-year="3000 BC" style="left: 7.14%;">
+                <div class="event-marker">
+                    <div class="marker-core"></div>
+                </div>
+                <div class="event-content">
+                    <h3>Ancient Egypt</h3>
+                    <p>Witness the dawn of civilization</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event" data-year="44 BC" style="left: 30.36%;">
+                <div class="event-marker">
+                    <div class="marker-core"></div>
+                </div>
+                <div class="event-content">
+                    <h3>Roman Empire</h3>
+                    <p>Experience the glory of Rome</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event" data-year="1600 AD" style="left: 50%;">
+                <div class="event-marker">
+                    <div class="marker-core"></div>
+                </div>
+                <div class="event-content">
+                    <h3>Feudal Japan</h3>
+                    <p>Train with samurai warriors</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event" data-year="1920 AD" style="left: 69.64%;">
+                <div class="event-marker">
+                    <div class="marker-core"></div>
+                </div>
+                <div class="event-content">
+                    <h3>Roaring Twenties</h3>
+                    <p>Jazz age and Art Deco splendor</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event" data-year="2150 AD" style="left: 92.86%;">
+                <div class="event-marker">
+                    <div class="marker-core"></div>
+                </div>
+                <div class="event-content">
+                    <h3>Mars Colony</h3>
+                    <p>Humanity's next frontier</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="featured-eras" id="eras">
+        <h2 class="section-title" data-text="FEATURED ERAS">FEATURED ERAS</h2>
+        <div class="eras-grid">
+            <div class="era-card" data-aos="fade-up">
+                <div class="era-image">
+                    <img src="https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=500&auto=format&fit=crop&q=60" alt="Ancient Egypt">
+                    <div class="era-overlay"></div>
+                    <div class="era-badge">
+                        <span class="badge-icon">👑</span>
+                        <span>24 spots left</span>
+                    </div>
+                </div>
+                <div class="era-content">
+                    <h3 class="era-title">ANCIENT EGYPT</h3>
+                    <p class="era-description">Witness the construction of the pyramids and experience life in the time of pharaohs. Meet legendary rulers like Cleopatra and Tutankhamun.</p>
+                    <div class="era-meta">
+                        <span class="era-duration">3-14 days</span>
+                        <span class="era-rating">★★★★☆</span>
+                    </div>
+                    <a href="#" class="era-button">EMBARK JOURNEY</a>
+                </div>
+            </div>
+
+            <div class="era-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="era-image">
+                    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&auto=format&fit=crop&q=60" alt="Imperial Rome">
+                    <div class="era-overlay"></div>
+                    <div class="era-badge">
+                        <span class="badge-icon">⚔️</span>
+                        <span>11 spots left</span>
+                    </div>
+                </div>
+                <div class="era-content">
+                    <h3 class="era-title">IMPERIAL ROME</h3>
+                    <p class="era-description">Experience the grandeur of the Roman Empire. Witness gladiatorial games, explore the Forum, and dine with Caesar.</p>
+                    <div class="era-meta">
+                        <span class="era-duration">7-21 days</span>
+                        <span class="era-rating">★★★★★</span>
+                    </div>
+                    <a href="#" class="era-button">EMBARK JOURNEY</a>
+                </div>
+            </div>
+
+            <div class="era-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="era-image">
+                    <img src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=500&auto=format&fit=crop&q=60" alt="Feudal Japan">
+                    <div class="era-overlay"></div>
+                    <div class="era-badge">
+                        <span class="badge-icon">🏯</span>
+                        <span>18 spots left</span>
+                    </div>
+                </div>
+                <div class="era-content">
+                    <h3 class="era-title">FEUDAL JAPAN</h3>
+                    <p class="era-description">Train with samurai warriors, witness the beauty of ancient temples, and experience the code of bushido.</p>
+                    <div class="era-meta">
+                        <span class="era-duration">5-14 days</span>
+                        <span class="era-rating">★★★★☆</span>
+                    </div>
+                    <a href="#" class="era-button">EMBARK JOURNEY</a>
+                </div>
+            </div>
+
+            <div class="era-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="era-image">
+                    <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=500&auto=format&fit=crop&q=60" alt="Future Colony">
+                    <div class="era-overlay"></div>
+                    <div class="era-badge">
+                        <span class="badge-icon">🚀</span>
+                        <span>22 spots left</span>
+                    </div>
+                </div>
+                <div class="era-content">
+                    <h3 class="era-title">FUTURE COLONY</h3>
+                    <p class="era-description">Journey to humanity's first Mars colony in 2150. Experience advanced technology and witness our expansion into space.</p>
+                    <div class="era-meta">
+                        <span class="era-duration">7-30 days</span>
+                        <span class="era-rating">★★★★★</span>
+                    </div>
+                    <a href="#" class="era-button">EMBARK JOURNEY</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="reviews">
+        <h2 class="section-title" data-text="TESTIMONIALS">TESTIMONIALS</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card" data-aos="flip-left">
+                <div class="testimonial-glow"></div>
+                <div class="quote-mark">"</div>
+                <div class="testimonial-content">
+                    <p class="testimonial-text">I've always had a fascination with Ancient Greece, and ChronoQuest made my dreams come true. Walking through the streets of Athens and discussing philosophy with Socrates was an experience beyond words.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Jason">
+                        <div class="author-info">
+                            <div class="author-name">JASON MORGAN</div>
+                            <div class="author-era">Ancient Greece Explorer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="testimonial-glow"></div>
+                <div class="quote-mark">"</div>
+                <div class="testimonial-content">
+                    <p class="testimonial-text">As a history teacher, experiencing the Renaissance firsthand has revolutionized how I teach my students. The attention to detail and safety protocols were impeccable.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&auto=format&fit=crop&q=60" alt="Sarah">
+                        <div class="author-info">
+                            <div class="author-name">SARAH CHEN</div>
+                            <div class="author-era">Renaissance Voyager</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="testimonial-glow"></div>
+                <div class="quote-mark">"</div>
+                <div class="testimonial-content">
+                    <p class="testimonial-text">The future Mars colony tour was mind-blowing! Seeing how humanity might live on another planet gave me hope and excitement for our species' future.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=60" alt="Mike">
+                        <div class="author-info">
+                            <div class="author-name">MIKE RODRIGUEZ</div>
+                            <div class="author-era">Future Explorer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <h2 class="section-title" data-text="HOW IT WORKS">HOW IT WORKS</h2>
+        <div class="process-container">
+            <div class="process-visual">
+                <div class="temporal-device">
+                    <div class="device-core"></div>
+                    <div class="device-rings">
+                        <div class="ring ring-1"></div>
+                        <div class="ring ring-2"></div>
+                        <div class="ring ring-3"></div>
+                    </div>
+                    <div class="device-particles"></div>
+                </div>
+                <h3 class="process-title">TRAVEL MORE THAN TIME</h3>
+                <p class="process-description">Our proprietary temporal displacement technology allows safe, controlled time travel. Each journey is carefully calibrated for historical accuracy.</p>
+            </div>
+            
+            <div class="pricing-table">
+                <div class="table-header">
+                    <div class="table-cell">PLAN</div>
+                    <div class="table-cell">DURATION</div>
+                    <div class="table-cell">PRICE</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">EXPLORER</div>
+                    <div class="table-cell">3 Days</div>
+                    <div class="table-cell">$12,999</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">ADVENTURER</div>
+                    <div class="table-cell">7 Days</div>
+                    <div class="table-cell">$24,999</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">VOYAGER</div>
+                    <div class="table-cell">14 Days</div>
+                    <div class="table-cell">$49,999</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">QUANTUM</div>
+                    <div class="table-cell">30 Days</div>
+                    <div class="table-cell">$89,999</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">CHRONOQUEST</div>
+            <div class="footer-links">
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 ChronoQuest. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+   
+</body>
+</html>

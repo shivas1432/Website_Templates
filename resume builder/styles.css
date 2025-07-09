@@ -1,0 +1,114 @@
+/* General styles */
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background: linear-gradient(135deg, #6e45e2, #88d3ce); /* Gradient background */
+    padding: 20px;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Ensure vertical flow */
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px; /* Adjust based on content */
+    margin-bottom: 40px; /* Space for the footer */
+}
+
+form, .form-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* 3D shadow effect */
+    margin: 0 auto;
+    width: 100%;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+input[type="text"], input[type="number"], input[type="email"], input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1); /* 3D effect */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:hover, input[type="number"]:hover, input[type="email"]:hover, input[type="file"]:hover {
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+ul li {
+    background-color: #654242;
+    color: white;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px; /* Rounded corners */
+    font-style: italic;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1); /* 3D effect */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+ul li:hover {
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    margin: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1); /* 3D effect */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    background-color: #4cae4c;
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    text-align:center;
+    font-size: 14px;
+    color: white;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 20px; /* Ensure footer is spaced from the content */
+}
+
+footer a {
+    color: #f0f0f0;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

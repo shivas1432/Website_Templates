@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live News</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* News Container and Animation Styles */
+    .news-container {
+      padding: 30px 20px;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+    
+    .news-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, #ff7e5f, #feb47b, #4cd7fa, #6a82fb);
+      z-index: 100;
+      animation: slideRightToLeft 3s infinite alternate;
+    }
+    
+    @keyframes slideRightToLeft {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+    
+    .news-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #333;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+      opacity: 0;
+      animation: fadeInDown 0.8s forwards;
+    }
+    
+    .news-container h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    
+    .close-button1 {
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+      z-index: 100;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards 0.5s;
+    }
+    
+    .close-button1:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      opacity: 0;
+      animation: fadeInUp 0.8s forwards 0.3s;
+    }
+    
+    .news-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 0;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    
+    .news-card:nth-child(1) { animation: cardFadeIn 0.5s forwards 0.3s; }
+    .news-card:nth-child(2) { animation: cardFadeIn 0.5s forwards 0.4s; }
+    .news-card:nth-child(3) { animation: cardFadeIn 0.5s forwards 0.5s; }
+    .news-card:nth-child(4) { animation: cardFadeIn 0.5s forwards 0.6s; }
+    .news-card:nth-child(5) { animation: cardFadeIn 0.5s forwards 0.7s; }
+    .news-card:nth-child(6) { animation: cardFadeIn 0.5s forwards 0.8s; }
+    .news-card:nth-child(n+7) { animation: cardFadeIn 0.5s forwards 0.9s; }
+    
+    .news-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      border-color: rgba(76, 215, 250, 0.3);
+    }
+    
+    .article-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 16px 16px 0 0;
+      transition: transform 0.5s ease;
+    }
+    
+    .news-card:hover .article-image {
+      transform: scale(1.05);
+    }
+    
+    .news-content {
+      padding: 20px;
+    }
+    
+    .news-card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      color: #333;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: color 0.3s ease;
+    }
+    
+    .news-card:hover h2 {
+      color: #4cd7fa;
+    }
+    
+    .news-card p {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .news-card a {
+      display: inline-block;
+      padding: 8px 15px;
+      background: linear-gradient(135deg, #4cd7fa, #6a82fb);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 15px rgba(76, 215, 250, 0.3);
+      transition: all 0.3s ease;
+      margin-top: 5px;
+    }
+    
+    .news-card a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(76, 215, 250, 0.4);
+      background: linear-gradient(135deg, #6a82fb, #4cd7fa);
+    }
+    
+    .loading-animation {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 50px auto;
+    }
+    
+    .loading-animation div {
+      position: absolute;
+      top: 33px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4cd7fa, #6a82fb);
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+    
+    .loading-animation div:nth-child(1) {
+      left: 8px;
+      animation: loading1 0.6s infinite;
+    }
+    
+    .loading-animation div:nth-child(2) {
+      left: 8px;
+      animation: loading2 0.6s infinite;
+    }
+    
+    .loading-animation div:nth-child(3) {
+      left: 32px;
+      animation: loading2 0.6s infinite;
+    }
+    
+    .loading-animation div:nth-child(4) {
+      left: 56px;
+      animation: loading3 0.6s infinite;
+    }
+    
+    @keyframes loading1 {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes loading3 {
+      0% { transform: scale(1); }
+      100% { transform: scale(0); }
+    }
+    
+    @keyframes loading2 {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(24px, 0); }
+    }
+    
+    .error-message {
+      color: #e74c3c;
+      font-weight: 500;
+      padding: 15px;
+      border-radius: 10px;
+      background: rgba(231, 76, 60, 0.1);
+      border: 1px solid rgba(231, 76, 60, 0.3);
+      max-width: 500px;
+      margin: 30px auto;
+      animation: fadeIn 0.5s forwards;
+    }
+    
+    .no-articles {
+      color: #555;
+      font-weight: 500;
+      padding: 20px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.05);
+      max-width: 500px;
+      margin: 30px auto;
+      animation: fadeIn 0.5s forwards;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes cardFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .news-container {
+        padding: 20px 15px;
+      }
+      
+      .news-container h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+      
+      .news-grid {
+        gap: 15px;
+      }
+      
+      .news-card h2 {
+        font-size: 1.1rem;
+      }
+      
+      .news-card p {
+        font-size: 0.85rem;
+      }
+      
+      .article-image {
+        height: 150px;
+      }
+      
+      .close-button1 {
+        top: 15px;
+        right: 15px;
+        font-size: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .news-container h1 {
+        font-size: 1.5rem;
+      }
+      
+      .article-image {
+        height: 180px;
+      }
+    }
+
+    .api-key-message {
+      background-color: rgba(244, 67, 54, 0.7);
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="news-container">
+    <button class="close-button1" id="close-button">✖️</button>
+    <h1>Live News</h1>
+    
+    <!-- API Key Message -->
+    <div class="api-key-message" id="api-key-message">
+      Please add your News API key in the JavaScript code to make the news data work.
+    </div>
+    
+    <!-- Loading animation -->
+    <div class="loading-animation" id="loading-animation">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    
+    <!-- Error message (hidden by default) -->
+    <div class="error-message" id="error-message" style="display: none;"></div>
+    
+    <!-- No articles message (hidden by default) -->
+    <p class="no-articles" id="no-articles" style="display: none;">No articles available at the moment.</p>
+    
+    <!-- News grid for articles -->
+    <div class="news-grid" id="news-grid">
+      <!-- Articles will be inserted here by JavaScript -->
+    </div>
+  </div>
+
+  <script>
+    // This is where you would normally add your API key
+    // const NEWS_API_KEY = 'YOUR_NEWS_API_KEY'; // <-- Replace with your API key
+    const NEWS_API_KEY = ''; // Leave empty to show the API key message
+    
+    // DOM Elements
+    const closeButton = document.getElementById('close-button');
+    const loadingAnimation = document.getElementById('loading-animation');
+    const errorMessage = document.getElementById('error-message');
+    const noArticles = document.getElementById('no-articles');
+    const newsGrid = document.getElementById('news-grid');
+    const apiKeyMessage = document.getElementById('api-key-message');
+    
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', initializeApp);
+    
+    function initializeApp() {
+      // Add event listener for close button
+      closeButton.addEventListener('click', function() {
+        // In a non-SPA environment, we'll redirect to the home page
+        window.location.href = '/';
+      });
+      
+      // Show API key message if no key is provided
+      if (!NEWS_API_KEY) {
+        apiKeyMessage.style.display = 'block';
+        loadingAnimation.style.display = 'none';
+        return;
+      }
+      
+      // Fetch news
+      fetchNews();
+    }
+    
+    async function fetchNews() {
+      try {
+        // Show loading animation
+        loadingAnimation.style.display = 'inline-block';
+        errorMessage.style.display = 'none';
+        noArticles.style.display = 'none';
+        
+        // Fetch news articles from News API
+        const response = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${NEWS_API_KEY}`);
+        const data = await response.json();
+        
+        // Hide loading animation
+        loadingAnimation.style.display = 'none';
+        
+        // Check if we got articles
+        if (data.articles && data.articles.length > 0) {
+          renderArticles(data.articles);
+        } else {
+          noArticles.style.display = 'block';
+        }
+      } catch (error) {
+        // Handle errors
+        console.error('Error fetching news:', error);
+        loadingAnimation.style.display = 'none';
+        errorMessage.textContent = 'Failed to fetch news. Please try again later.';
+        errorMessage.style.display = 'block';
+      }
+    }
+    
+    function renderArticles(articles) {
+      // Clear the grid first
+      newsGrid.innerHTML = '';
+      
+      // Truncate text helper function
+      const truncateText = (text, maxLength = 120) => {
+        if (!text) return '';
+        return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+      };
+      
+      // Create and append article cards
+      articles.forEach((article, index) => {
+        const articleCard = document.createElement('div');
+        articleCard.className = 'news-card';
+        
+        // Prepare image URL (with fallback)
+        const imageUrl = article.urlToImage || 'https://via.placeholder.com/300x180?text=News';
+        
+        // Set the card HTML
+        articleCard.innerHTML = `
+          <img 
+            src="${imageUrl}" 
+            alt="${article.title || 'News article'}" 
+            class="article-image"
+            onerror="this.src='https://via.placeholder.com/300x180?text=News'"
+          />
+          <div class="news-content">
+            <h2>${truncateText(article.title, 80)}</h2>
+            <p>${truncateText(article.description, 150)}</p>
+            <a href="${article.url}" target="_blank" rel="noopener noreferrer">Read more</a>
+          </div>
+        `;
+        
+        // Add the card to the grid
+        newsGrid.appendChild(articleCard);
+      });
+    }
+  </script>
+</body>
+</html>
