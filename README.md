@@ -64,14 +64,31 @@ template-name/
 
 ## Live Demos
 
-Popular templates with live demos:
-- [Wildlife Blog](https://wildlifeblogssk.netlify.app)
-- [Travel Planner](https://travelplannerssk.netlify.app)
-- [Solar Energy](https://solarssk.netlify.app)
-- [Game Store](https://gamestoressk.netlify.app)
-- [Music Player](https://musicplayerssk.netlify.app)
+## 📁 Website Templates Collection
+- [wildlife](https://wildlifessk.netlify.app/)  
+- [Portfolio Website With 3D Effect](https://portfolio-ss-template.netlify.app/)  
+- [Robotech](https://robotech-ss-temmplate.netlify.app/)
+- [cyber jungle](https://cyberjunglessk.netlify.app/)  
+- [VEUE](https://veue-ss-template.netlify.app/)  
+- [ai](https://timetravel1.netlify.app/)
+- [restuarent](https://restuarentssk.netlify.app/)
+- [solar](https://solarssk.netlify.app/) 
+- [alex](https://innovate-corp-alex.netlify.app/)  
+- [avathar](https://shivstudio-avathar.netlify.app/)   
+- [game store](https://gamestoressk.netlify.app/)  
+- [hairsalon](https://hairsalooooon.netlify.app/)    
+- [melodypulse](https://melodypulsessk.netlify.app/)  
+- [music player](https://melodypulsessk.netlify.app/)  
+- [mutees](https://muteesportfolio.netlify.app/)  
+- [news](https://timetravel1.netlify.app/)  
+- [prohealth](https://prohealthssk.netlify.app/)   
+- [resume ](https://shivashankerkanugula.netlify.app/)  
+- [sahithi](https://sahithimorampudiportfolio.netlify.app/)   
+- [skills](https://kingdom-rush.netlify.app/)   
+- [surya_portfolio](https://suryavikas-portfolio.netlify.app/)  
+- [tech](https://1950-2050.netlify.app/)     
 
-*More demos available in individual template folders*
+
 
 ## Customization Guide
 
